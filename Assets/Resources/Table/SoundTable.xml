@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+		type = 0 (사운드), 1 (bgm)
+
+-->
+
+
+
+<SoundList>
+	<Sounds>
+		<sound id="1000" desc="메인메뉴클릭" type="0" resourceName="Sound/MenuClick"/>
+		<sound id="1001" desc="게임스타트클릭" type="0" resourceName="Sound/MenuClick"/>
+		
+		<sound id="2000" desc="게임 승리" type="0" resourceName="Sound/MenuClick"/>
+		<sound id="2001" desc="게임 패배" type="0" resourceName="Sound/MenuClick"/>
+
+		<sound id="10000" desc="배경음악" type="1" resourceName="Sound/MenuClick"/>
+
+	</Sounds>
+</SoundList>
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LocalizeList>
+	<Texts>
+		<Text textId="1" krString="아리사" engString="Empty" jpString="Empty" cnString="艾丽莎" twString="艾麗莎"/>
+		<Text textId="100" krString="확인" engString="OK" jpString="確認" cnString="确认" twString="確認"/>
+		<Text textId="101" krString="취소" engString="CANCEL" jpString="キャンセル" cnString="取消" twString="取消"/>
+	</Texts>
+</LocalizeList>
