@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/MainProject/Scenes/TitleScene.unity
+- path: Assets/Plugin/ExcelImporter/Example/Example.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
