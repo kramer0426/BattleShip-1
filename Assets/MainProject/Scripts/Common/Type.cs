@@ -12,6 +12,14 @@ public enum LanguageType
     MAX = 5
 }
 
+public enum ShipState
+{
+    Start = 0,
+    Battle = 1,
+    Clear = 2,
+    Die = 3
+}
+
 
 //
 public static class Utils

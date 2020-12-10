@@ -64,6 +64,9 @@
     <Compile Include="Assets\MainProject\Scripts\Common\SoundMgr.cs" />
     <Compile Include="Assets\Plugin\LeanTween\Framework\LeanTween.cs" />
     <Compile Include="Assets\Plugin\LeanTween\Framework\LeanAudio.cs" />
+    <Compile Include="Assets\Plugin\ExcelImporter\Example\Scripts\Example.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Common\Excel\BattleShipDataExcel.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\ShipPlayer.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\DataMgr.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\Singleton.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\Table\TableLoader.cs" />
@@ -71,18 +74,23 @@
     <Compile Include="Assets\MainProject\Scripts\Common\UI\FadeControlUI.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\UI\PopupControlUI.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\SoundControl.cs" />
+    <Compile Include="Assets\Plugin\ExcelImporter\Example\Scripts\Entity\MstItemEntity.cs" />
     <Compile Include="Assets\Plugin\LeanTween\Framework\LeanTweenExt.cs" />
     <Compile Include="Assets\Plugin\LeanTween\Framework\LTDescrOptional.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Common\Excel\ExcelLoader.cs" />
+    <Compile Include="Assets\Plugin\ExcelImporter\Example\Scripts\ExcelAsset\MstItems.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\ShipBase.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\Table\SoundTable.cs" />
     <Compile Include="Assets\Plugin\LeanTween\Framework\LTDescr.cs" />
-    <Compile Include="Assets\Plugin\ExcelImporter\Example\Scripts\Example.cs" />
-    <Compile Include="Assets\Plugin\ExcelImporter\Example\Scripts\Entity\MstItemEntity.cs" />
-    <Compile Include="Assets\Plugin\ExcelImporter\Example\Scripts\ExcelAsset\MstItems.cs" />
-    <Compile Include="Assets\MainProject\Scripts\Common\Excel\ExcelLoader.cs" />
-    <Compile Include="Assets\MainProject\Scripts\Common\Excel\BattleShipDataExcel.cs" />
-    <Compile Include="Assets\MainProject\Scripts\Battle\ShipBase.cs" />
-    <Compile Include="Assets\MainProject\Scripts\Battle\PlayerShip.cs" />
-    <Compile Include="Assets\MainProject\Scripts\Battle\EnemyShip.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\BulletBase.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\BulletLine.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\BulletCurve.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\PlaneBase.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\PlaneBomb.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\BattleControl.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\ShipEnemy.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\BulletTorpedo.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\PlaneTorpedo.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Plugin\LeanTween\ReadMe.txt" />

@@ -276,6 +276,10 @@ namespace Sinabro
 
         //
         public const int DEFALUT_GOLD = 0;
+
+        //
+        public const float StartBattlePlayerMoveTime = 1.0f;
+        public const float ClearBattlePlayerMoveTime = 3.0f;
     }
 
 
