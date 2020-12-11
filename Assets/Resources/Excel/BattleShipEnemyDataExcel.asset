@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35df29ce8b38e36438be66e4e593add1, type: 3}
+  m_Name: BattleShipEnemyDataExcel
+  m_EditorClassIdentifier: 
+  Sheet1:
+  - Id: 0
+    GainGold: 20
+    Hp: 4
+    Critical: 0
+    BaseDamage: 1
+    Stage: 0
+    SupportBomb: 0
+    SupportTorpedo: 0
+    SideDefence: 1
+    TopDefence: 1
+    TorpedoDefence: 1
+    Contry: 1
+    Accuracy: 30
+    FireTime: 2.1
+    ReloadTime: 5.5
+    ShellCnt: 100
+    maxDamage: 50
+    ResourceName: TestEnemy
+  - Id: 1
+    GainGold: 30
+    Hp: 60
+    Critical: 0
+    BaseDamage: 2
+    Stage: 10
+    SupportBomb: 0
+    SupportTorpedo: 0
+    SideDefence: 2
+    TopDefence: 2
+    TorpedoDefence: 2
+    Contry: 2
+    Accuracy: 32
+    FireTime: 2
+    ReloadTime: 5
+    ShellCnt: 100
+    maxDamage: 100
+    ResourceName: TestEnemy
+  - Id: 2
+    GainGold: 50
+    Hp: 200
+    Critical: 0
+    BaseDamage: 4
+    Stage: 20
+    SupportBomb: 0
+    SupportTorpedo: 0
+    SideDefence: 0
+    TopDefence: 0
+    TorpedoDefence: 0
+    Contry: 3
+    Accuracy: 34
+    FireTime: 2
+    ReloadTime: 5
+    ShellCnt: 100
+    maxDamage: 200
+    ResourceName: TestEnemy
+  - Id: 3
+    GainGold: 90
+    Hp: 600
+    Critical: 0
+    BaseDamage: 8
+    Stage: 30
+    SupportBomb: 0
+    SupportTorpedo: 0
+    SideDefence: 0
+    TopDefence: 0
+    TorpedoDefence: 0
+    Contry: 4
+    Accuracy: 36
+    FireTime: 2
+    ReloadTime: 5
+    ShellCnt: 100
+    maxDamage: 300
+    ResourceName: TestEnemy
+  - Id: 4
+    GainGold: 140
+    Hp: 1400
+    Critical: 0
+    BaseDamage: 10
+    Stage: 40
+    SupportBomb: 0
+    SupportTorpedo: 0
+    SideDefence: 0
+    TopDefence: 0
+    TorpedoDefence: 0
+    Contry: 1
+    Accuracy: 38
+    FireTime: 2
+    ReloadTime: 5
+    ShellCnt: 100
+    maxDamage: 500
+    ResourceName: TestEnemy
+  - Id: 5
+    GainGold: 200
+    Hp: 2600
+    Critical: 0
+    BaseDamage: 15
+    Stage: 50
+    SupportBomb: 0
+    SupportTorpedo: 0
+    SideDefence: 0
+    TopDefence: 0
+    TorpedoDefence: 0
+    Contry: 2
+    Accuracy: 40
+    FireTime: 2
+    ReloadTime: 5
+    ShellCnt: 100
+    maxDamage: 750
+    ResourceName: TestEnemy
+  - Id: 6
+    GainGold: 280
+    Hp: 4600
+    Critical: 0
+    BaseDamage: 20
+    Stage: 60
+    SupportBomb: 0
+    SupportTorpedo: 0
+    SideDefence: 0
+    TopDefence: 0
+    TorpedoDefence: 0
+    Contry: 3
+    Accuracy: 42
+    FireTime: 2
+    ReloadTime: 5
+    ShellCnt: 100
+    maxDamage: 1000
+    ResourceName: TestEnemy

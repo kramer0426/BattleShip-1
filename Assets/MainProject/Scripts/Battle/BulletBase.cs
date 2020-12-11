@@ -6,7 +6,9 @@ namespace Sinabro
 {
     public class BulletBase : MonoBehaviour
     {
-        public virtual void Shoot(bool bPlayer, int damage, float bulletMoveTime, Vector3 targetPos) { }
+        public bool bPlayer_;
+
+        public virtual void Shoot(bool bPlayer, int damage, Vector3 targetPos) { }
 
         public virtual void Die() { }
     }

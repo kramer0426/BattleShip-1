@@ -7,5 +7,4 @@ using UnityEngine;
 public class BattleShipDataExcel : ScriptableObject
 {
     public List<BattleShipEntity> Sheet1; // Replace 'EntityType' to an actual type that is serializable.
-    public List<ShipPartsEntity> Sheet2; // Replace 'EntityType' to an actual type that is serializable.
 }

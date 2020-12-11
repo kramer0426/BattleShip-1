@@ -16,113 +16,30 @@ namespace Sinabro
     public class MyInfo
     {
         // for save
-        public int myGold;
-        public int[] myStatLevels = new int[7];
-        public int[] myStageLevels = new int[12];
-        public bool[] isEdgesCleard = new bool[12];
-        public bool[] isFinalsCleard = new bool[12];
-
-        public List<int> myPurchaseSkillList = new List<int>();
-        public int[] myEquipedSkillIds = new int[5];
-
-        public List<int> myPurchaseActiveItemList = new List<int>();
-        public int[] myEquipedActiveItemIds = new int[3];
-        public List<int> myPurchasePassiveItemList = new List<int>();
-        public int[] myEquipedPassiveItemIds = new int[4];
-
-        public List<int> myPurchaseToolsList = new List<int>();
-        public int[] myEquipedToolsIds = new int[4];
+        public int myGold_;
+        public int myCash_;
+        public int currentChapter_;
 
         //
         public DateTime saveDate;
         public string charName;
 
-        // for play
-        public int currentStageIndex;
+        
 
         public MyInfo()
         {
-            myGold = DataMgr.DEFALUT_GOLD;
-
-            for (int i = 0; i < 7; ++i)
-                myStatLevels[i] = 1;
-
-            for (int i = 0; i < 12; ++i)
-            {
-                myStageLevels[i] = 0;
-                isEdgesCleard[i] = false;
-                isFinalsCleard[i] = false;
-            }
-
-            currentStageIndex = 0;
-
-            myPurchaseSkillList.Add(1101);
-            myPurchaseSkillList.Add(2101);
-            myPurchaseSkillList.Add(3101);
-            myPurchaseSkillList.Add(4101);
-            myPurchaseSkillList.Add(5101);
-
-            myEquipedSkillIds[0] = 1101;
-            myEquipedSkillIds[1] = 2101;
-            myEquipedSkillIds[2] = 3101;
-            myEquipedSkillIds[3] = 4101;
-            myEquipedSkillIds[4] = 5101;
-
-            for (int i = 0; i < 3; ++i)
-                myEquipedActiveItemIds[i] = 0;
-
-            for (int i = 0; i < 4; ++i)
-                myEquipedPassiveItemIds[i] = 0;
-
-            for (int i = 0; i < 4; ++i)
-                myEquipedToolsIds[i] = 0;
+            myGold_ = DataMgr.DEFALUT_GOLD;
+            myCash_ = 0;
+            currentChapter_ = 0;
         }
 
         //
         public void ResetMyData()
         {
-            //PlayerPrefs.DeleteAll();
+            myGold_ = DataMgr.DEFALUT_GOLD;
+            myCash_ = 0;
 
-            myGold = 0;
-
-            for (int i = 0; i < 7; ++i)
-                myStatLevels[i] = 1;
-
-            for (int i = 0; i < 12; ++i)
-            {
-                myStageLevels[i] = 0;
-                isEdgesCleard[i] = false;
-                isFinalsCleard[i] = false;
-            }
-
-
-            currentStageIndex = 0;
-
-            myPurchaseSkillList.Clear();
-            myPurchaseSkillList.Add(1101);
-            myPurchaseSkillList.Add(2101);
-            myPurchaseSkillList.Add(3101);
-            myPurchaseSkillList.Add(4101);
-            myPurchaseSkillList.Add(5101);
-
-            myEquipedSkillIds[0] = 1101;
-            myEquipedSkillIds[1] = 2101;
-            myEquipedSkillIds[2] = 3101;
-            myEquipedSkillIds[3] = 4101;
-            myEquipedSkillIds[4] = 5101;
-
-            myPurchaseActiveItemList.Clear();
-            myPurchasePassiveItemList.Clear();
-            myPurchaseToolsList.Clear();
-
-            for (int i = 0; i < 3; ++i)
-                myEquipedActiveItemIds[i] = 0;
-
-            for (int i = 0; i < 4; ++i)
-                myEquipedPassiveItemIds[i] = 0;
-
-            for (int i = 0; i < 4; ++i)
-                myEquipedToolsIds[i] = 0;
+            currentChapter_ = 0;
 
             //
             DataMgr.Instance.SaveData();
@@ -131,7 +48,7 @@ namespace Sinabro
         //
         public void AddMyGold(int addmoney)
         {
-            myGold += addmoney;
+            myGold_ += addmoney;
 
             DataMgr.Instance.SaveData();
         }
@@ -238,33 +155,6 @@ namespace Sinabro
 
             myInfo_g = data;
 
-            if (myInfo_g.isEdgesCleard == null)
-            {
-                myInfo_g.isEdgesCleard = new bool[12];
-                for (int i = 0; i < 8; ++i)
-                    myInfo_g.isEdgesCleard[i] = false;
-            }
-            if (myInfo_g.isFinalsCleard == null)
-            {
-                myInfo_g.isFinalsCleard = new bool[12];
-                for (int i = 0; i < 8; ++i)
-                    myInfo_g.isFinalsCleard[i] = false;
-            }
-
-            if (myInfo_g.myStageLevels.Length == 8)
-            {
-                Array.Resize(ref myInfo_g.myStageLevels, 12);
-            }
-            if (myInfo_g.isEdgesCleard.Length == 8)
-            {
-                Array.Resize(ref myInfo_g.isEdgesCleard, 12);
-            }
-            if (myInfo_g.isFinalsCleard.Length == 8)
-            {
-                Array.Resize(ref myInfo_g.isFinalsCleard, 12);
-            }
-
-
         }
 
         // for local
@@ -275,11 +165,13 @@ namespace Sinabro
 
 
         //
-        public const int DEFALUT_GOLD = 0;
+        public const int DEFALUT_GOLD = 1000;
 
         //
         public const float StartBattlePlayerMoveTime = 1.0f;
         public const float ClearBattlePlayerMoveTime = 3.0f;
+        public const float LineBulletMoveTime = 1.0f;
+        public const float CurveBulletMoveTime = 1.5f;
     }
 
 

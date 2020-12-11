@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b8f27a1bb6519438b61d287a49955b, type: 3}
+  m_Name: ChapterDataExcel
+  m_EditorClassIdentifier: 
+  Sheet1:
+  - ChapterID: 0
+    UpgradeValue: 0
+  - ChapterID: 1
+    UpgradeValue: 1
+  - ChapterID: 2
+    UpgradeValue: 2
+  - ChapterID: 3
+    UpgradeValue: 3
+  - ChapterID: 4
+    UpgradeValue: 4
+  - ChapterID: 5
+    UpgradeValue: 5
+  - ChapterID: 6
+    UpgradeValue: 6
+  - ChapterID: 7
+    UpgradeValue: 7
+  - ChapterID: 8
+    UpgradeValue: 8
+  - ChapterID: 9
+    UpgradeValue: 9
+  - ChapterID: 10
+    UpgradeValue: 10
+  - ChapterID: 11
+    UpgradeValue: 11
+  - ChapterID: 12
+    UpgradeValue: 12
+  - ChapterID: 13
+    UpgradeValue: 13
+  - ChapterID: 14
+    UpgradeValue: 14
+  - ChapterID: 15
+    UpgradeValue: 15
+  - ChapterID: 16
+    UpgradeValue: 16
+  - ChapterID: 17
+    UpgradeValue: 17
+  - ChapterID: 18
+    UpgradeValue: 18
+  - ChapterID: 19
+    UpgradeValue: 19
+  - ChapterID: 20
+    UpgradeValue: 20
+  - ChapterID: 21
+    UpgradeValue: 21
+  - ChapterID: 22
+    UpgradeValue: 22
+  - ChapterID: 23
+    UpgradeValue: 23
+  - ChapterID: 24
+    UpgradeValue: 24
+  - ChapterID: 25
+    UpgradeValue: 25
+  - ChapterID: 26
+    UpgradeValue: 26
+  - ChapterID: 27
+    UpgradeValue: 27
+  - ChapterID: 28
+    UpgradeValue: 28
+  - ChapterID: 29
+    UpgradeValue: 29
+  - ChapterID: 30
+    UpgradeValue: 30
+  - ChapterID: 31
+    UpgradeValue: 31
+  - ChapterID: 32
+    UpgradeValue: 32
+  - ChapterID: 33
+    UpgradeValue: 33
+  - ChapterID: 34
+    UpgradeValue: 34
+  - ChapterID: 35
+    UpgradeValue: 35
+  - ChapterID: 36
+    UpgradeValue: 36
+  - ChapterID: 37
+    UpgradeValue: 37
+  - ChapterID: 38
+    UpgradeValue: 38
+  - ChapterID: 39
+    UpgradeValue: 39
+  - ChapterID: 40
+    UpgradeValue: 40

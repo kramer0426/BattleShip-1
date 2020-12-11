@@ -9,14 +9,32 @@ namespace Sinabro
         //
         private void FixedUpdate()
         {
+            if (bPlayer_)
+            {
+                if (BattleControl.Instance.enemyShip_.shipState_ == ShipState.Die)
+                {
+                    Destroy(this.gameObject);
+                }
+                
+            }
+            else
+            {
+                if (BattleControl.Instance.playerShip_.shipState_ == ShipState.Die)
+                {
+                    Destroy(this.gameObject);
+                }
+
+            }
         }
 
         //----------------------------------------------------------------------------------------
         // Shoot
         //----------------------------------------------------------------------------------------
-        public override void Shoot(bool bPlayer, int damage, float bulletMoveTime, Vector3 targetPos)
+        public override void Shoot(bool bPlayer, int damage, Vector3 targetPos)
         {
-            LeanTween.move(this.gameObject, targetPos, bulletMoveTime).setOnComplete(
+            bPlayer_ = bPlayer;
+
+            LeanTween.move(this.gameObject, targetPos, DataMgr.LineBulletMoveTime).setOnComplete(
             () =>
             {
                 if (bPlayer)
