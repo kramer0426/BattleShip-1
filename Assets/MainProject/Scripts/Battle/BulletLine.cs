@@ -39,11 +39,11 @@ namespace Sinabro
             {
                 if (bPlayer)
                 {
-                    BattleControl.Instance.HitToEnemy(damage);
+                    BattleControl.Instance.HitToEnemy(damage, DamageType.Line);
                 }
                 else
                 {
-                    BattleControl.Instance.HitToPlayer(damage);
+                    BattleControl.Instance.HitToPlayer(damage, DamageType.Line);
                 }
                 
                 Destroy(this.gameObject);

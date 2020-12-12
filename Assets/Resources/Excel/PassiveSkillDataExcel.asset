@@ -1,0 +1,384 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7678ba978a1de24186bd00f61280a31, type: 3}
+  m_Name: PassiveSkillDataExcel
+  m_EditorClassIdentifier: 
+  Sheet1:
+  - Id: 0
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 1
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 2
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 3
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 4
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 5
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 6
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 7
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 8
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 2
+  - Id: 9
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 2
+  - Id: 10
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 11
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 12
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 13
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 14
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 15
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 16
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 17
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 18
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 19
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 20
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 21
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 22
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 23
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 24
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 25
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 26
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 27
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 28
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 29
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 30
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 31
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 32
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 33
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 34
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 35
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 36
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 37
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 38
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 39
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12
+  - Id: 40
+    Rank: 6
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    Value3: 0
+    RandomRate: 12

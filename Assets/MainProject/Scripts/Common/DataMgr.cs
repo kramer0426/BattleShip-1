@@ -21,6 +21,9 @@ namespace Sinabro
         public int currentChapter_;
 
         //
+        public List<MyShipData> myShipDataList_ = new List<MyShipData>();
+
+        //
         public DateTime saveDate;
         public string charName;
 
@@ -54,6 +57,30 @@ namespace Sinabro
         }
     }
 
+    [System.Serializable]
+    public class MyShipData
+    {
+        //
+        public BattleShipEntity shipInfo_;
+        public bool bOpen_;
+        public bool bJoinFleet_;
+
+        //
+        public int[] equipItems_ = new int[DataMgr.MAX_ITEM_SLOT];
+
+        //
+        public int upgradeLevel_;
+
+        // to do : passive data
+
+        public MyShipData()
+        {
+            bOpen_ = false;
+            bJoinFleet_ = false;
+            upgradeLevel_ = 0;
+        }
+
+    }
 
     //
     // global data magager
@@ -163,6 +190,11 @@ namespace Sinabro
         public const int TEXT_CONFIRM = 100;
         public const int TEXT_CANCEL = 101;
 
+        //
+        public const int BOSS_CHAPTER = 9;
+        public const int MAX_CHAPTER = 10;
+        public const int MIN_ENEMY_SHIP_LIMITE = 2;
+        public const int MAX_ITEM_SLOT = 5;
 
         //
         public const int DEFALUT_GOLD = 1000;

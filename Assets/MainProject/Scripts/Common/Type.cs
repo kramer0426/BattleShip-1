@@ -20,6 +20,28 @@ public enum ShipState
     Die = 3
 }
 
+public enum DamageType
+{
+    Line = 0,
+    Curve = 1,
+    Torpedo = 2
+}
+
+public enum ShipAbility
+{
+    Hp = 0,
+    Ap = 1,
+    Accuracy = 2,
+    SideDp = 3,
+    TopDp = 4,
+    TorpedoDp = 5,
+    FireTime = 6,
+    ReloadTime = 7,
+    ShellCnt = 8,
+    MAX = 9
+}
+
+
 
 //
 public static class Utils

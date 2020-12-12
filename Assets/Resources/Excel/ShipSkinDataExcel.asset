@@ -1,0 +1,220 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b54beb624cd9577409ce6e6adbfd9eb5, type: 3}
+  m_Name: ShipSkinDataExcel
+  m_EditorClassIdentifier: 
+  Sheet1:
+  - Id: 0
+    BasttleShipID: 0
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 1
+    BasttleShipID: 1
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 2
+    BasttleShipID: 2
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 3
+    BasttleShipID: 3
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 4
+    BasttleShipID: 4
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 5
+    BasttleShipID: 5
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 6
+    BasttleShipID: 6
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 7
+    BasttleShipID: 7
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 8
+    BasttleShipID: 8
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 9
+    BasttleShipID: 9
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 10
+    BasttleShipID: 10
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 11
+    BasttleShipID: 11
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 12
+    BasttleShipID: 12
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 13
+    BasttleShipID: 13
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 14
+    BasttleShipID: 14
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 15
+    BasttleShipID: 15
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 16
+    BasttleShipID: 16
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 17
+    BasttleShipID: 17
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 18
+    BasttleShipID: 18
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 19
+    BasttleShipID: 19
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 20
+    BasttleShipID: 20
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 21
+    BasttleShipID: 21
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 22
+    BasttleShipID: 22
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 23
+    BasttleShipID: 23
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 24
+    BasttleShipID: 24
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 25
+    BasttleShipID: 25
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 26
+    BasttleShipID: 26
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 27
+    BasttleShipID: 27
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 28
+    BasttleShipID: 28
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 29
+    BasttleShipID: 29
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 30
+    BasttleShipID: 30
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 31
+    BasttleShipID: 31
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 32
+    BasttleShipID: 32
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 33
+    BasttleShipID: 33
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 34
+    BasttleShipID: 34
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 35
+    BasttleShipID: 35
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 36
+    BasttleShipID: 36
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 37
+    BasttleShipID: 37
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 38
+    BasttleShipID: 38
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 39
+    BasttleShipID: 39
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000
+  - Id: 40
+    BasttleShipID: 40
+    RresourceName: testSkin
+    PriceCash: 100
+    PriceGold: 1000

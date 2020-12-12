@@ -10,23 +10,16 @@ namespace Sinabro
         public ShipState                shipState_;
         public BattleShipEnemyEntity    battleShipInfo_ = null;
         public ShakeControl             shakeControl_;
-        public GameObject bulletObject_;
-        public GameObject[] guns_;
+        public GameObject               bulletObject_;
+        public GameObject[]             guns_;
 
         //
         private Vector3 bulletTargetPos_ = new Vector3(0, 0, 0);
         private Coroutine fireCoroutine = null;
 
         //
-        public int hp_;
-        public int ap_;
-        public int sideDp_;
-        public int topDp_;
-        public int torpedoDp_;
-        public float fireTime_;
-        public float reloadTime_;
-        public int maxShellCnt_;
-        public int currentShellCnt_;
+        public int currentShellCnt_ = 0;
+        public float[] shipAbility_ = new float[(int)ShipAbility.MAX];
 
         //
         private void FixedUpdate()
@@ -46,16 +39,22 @@ namespace Sinabro
             shipState_ = ShipState.Start;
             transform.position = startPos;
 
-            hp_ = battleShipInfo_.Hp;
-            ap_ = battleShipInfo_.BaseDamage;
-            sideDp_ = battleShipInfo_.SideDefence;
-            topDp_ = battleShipInfo_.TopDefence;
-            torpedoDp_ = battleShipInfo_.TorpedoDefence;
-            fireTime_ = battleShipInfo_.FireTime;
-            reloadTime_ = battleShipInfo_.ReloadTime;
-            maxShellCnt_ = battleShipInfo_.ShellCnt;
+            shipAbility_ = new float[(int)ShipAbility.MAX];
 
-            fireTime_ = 1.0f;
+            shipAbility_[0] = battleShipInfo_.Hp;
+            shipAbility_[1] = battleShipInfo_.BaseDamage;
+            shipAbility_[2] = battleShipInfo_.Accuracy;
+            shipAbility_[3] = battleShipInfo_.SideDefence;
+            shipAbility_[4] = battleShipInfo_.TopDefence;
+            shipAbility_[5] = battleShipInfo_.TorpedoDefence;
+            shipAbility_[6] = battleShipInfo_.FireTime;
+            shipAbility_[7] = battleShipInfo_.ReloadTime;
+            shipAbility_[8] = battleShipInfo_.ShellCnt;
+
+            // add stage value
+            for (int i = 0; i < 6; ++i)
+                shipAbility_[i] += BattleControl.Instance.excelDatas_.GetChapter(DataMgr.Instance.myInfo_g.currentChapter_).UpgradeValue;
+
         }
 
         //----------------------------------------------------------------------------------------
@@ -69,10 +68,19 @@ namespace Sinabro
                 () =>
                 {
                     shipState_ = ShipState.Battle;
-                    currentShellCnt_ = maxShellCnt_;
+                    currentShellCnt_ = (int)shipAbility_[(int)ShipAbility.ShellCnt];
 
                     BattleControl.Instance.playerShip_.StartFire();
                     StartFire();
+                });
+            }
+            else if (shipState_ == ShipState.Clear)
+            {
+                LeanTween.move(this.gameObject, BattleControl.Instance.playerBattleClearPos_.transform.position, 1.0f).setEaseInOutQuad().setOnComplete(
+                () =>
+                {
+                    Destroy(this.gameObject);
+                    BattleControl.Instance.ReStartBattle();
                 });
             }
         }
@@ -106,15 +114,48 @@ namespace Sinabro
         //----------------------------------------------------------------------------------------
         // Damage
         //----------------------------------------------------------------------------------------
-        public void Damage(int damage)
+        public void Damage(int damage, DamageType type)
         {
-            hp_ -= damage;
-            if (hp_ <= 0)
-                hp_ = 0;
+            if (shipState_ != ShipState.Battle)
+                return;
 
-            BattleControl.Instance.battleUI_.UpdateEnemyHp(hp_);
+            // make damage
+            int formulaDamage = 0;
 
-            if (hp_ <= 0)
+            if ((int)BattleControl.Instance.playerShip_.shipAbility_[(int)ShipAbility.Accuracy] >= Random.Range(0, 99))
+            {
+                if (type == DamageType.Line)
+                {
+                    formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.SideDp];
+                }
+                else if (type == DamageType.Curve)
+                {
+                    formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.TopDp];
+                }
+                else if (type == DamageType.Torpedo)
+                {
+                    formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.TorpedoDp];
+                }
+
+                // limite min damage
+                if (formulaDamage <= 0)
+                    formulaDamage = 1;
+            }
+            else
+            {
+                // miss
+            }
+
+
+
+            shipAbility_[(int)ShipAbility.Hp] -= formulaDamage;
+            if (shipAbility_[(int)ShipAbility.Hp] <= 0)
+                shipAbility_[(int)ShipAbility.Hp] = 0;
+
+            BattleControl.Instance.battleUI_.UpdateEnemyHp((int)shipAbility_[(int)ShipAbility.Hp]);
+            BattleControl.Instance.CreateDamageEffect(this.gameObject.transform.position, formulaDamage);
+
+            if (shipAbility_[(int)ShipAbility.Hp] <= 0)
             {
                 shipState_ = ShipState.Die;
                 BattleControl.Instance.playerShip_.HoldFire();
@@ -125,7 +166,8 @@ namespace Sinabro
             }
             else
             {
-                StartCoroutine(shakeControl_.Shake(this.gameObject.transform.position, 0.2f, 0.02f));
+                if (formulaDamage > 0)
+                    StartCoroutine(shakeControl_.Shake(this.gameObject.transform.position, 0.2f, 0.02f));
             }
         }
 
@@ -141,15 +183,15 @@ namespace Sinabro
         private void ReloadShell()
         {
             // set reload
-            currentShellCnt_ = maxShellCnt_;
+            currentShellCnt_ = (int)shipAbility_[(int)ShipAbility.ShellCnt];
 
             //
-            StartCoroutine(CoroutineFire());
+            StartFire();
         }
 
         IEnumerator CoroutineFire()
         {
-            yield return new WaitForSeconds(fireTime_);
+            yield return new WaitForSeconds(shipAbility_[(int)ShipAbility.FireTime]);
 
             int fireCnt = guns_.Length;
 
@@ -160,7 +202,7 @@ namespace Sinabro
                 {
                     yield return null;
 
-                    Invoke("ReloadShell", reloadTime_);
+                    Invoke("ReloadShell", shipAbility_[(int)ShipAbility.ReloadTime]);
 
                     break;
                 }
@@ -170,7 +212,7 @@ namespace Sinabro
                 {
                     fireCnt = guns_.Length;
 
-                    yield return new WaitForSeconds(fireTime_);
+                    yield return new WaitForSeconds(shipAbility_[(int)ShipAbility.FireTime]);
                 }
 
                 //
@@ -182,15 +224,25 @@ namespace Sinabro
                 }
 
                 // to do : fire
-                GameObject bulletGO = (GameObject)Instantiate(bulletObject_, guns_[guns_.Length - fireCnt].transform.position, this.transform.rotation);
-                BulletBase bullet = bulletGO.GetComponent<BulletBase>();
-                if (bullet != null)
+                if (BattleControl.Instance.bPlayerShipReady_)
                 {
-                    bulletTargetPos_.x = BattleControl.Instance.playerShip_.transform.position.x + Random.Range(-0.1f, 0.1f);
-                    bulletTargetPos_.y = guns_[guns_.Length - fireCnt].transform.position.y;
+                    GameObject bulletGO = (GameObject)Instantiate(bulletObject_, guns_[guns_.Length - fireCnt].transform.position, this.transform.rotation);
+                    BulletBase bullet = bulletGO.GetComponent<BulletBase>();
+                    if (bullet != null)
+                    {
+                        bulletTargetPos_.x = BattleControl.Instance.playerShip_.transform.position.x + Random.Range(-0.1f, 0.1f);
+                        bulletTargetPos_.y = guns_[guns_.Length - fireCnt].transform.position.y;
 
-                    bullet.Shoot(false, ap_, bulletTargetPos_);
+                        bullet.Shoot(false, (int)shipAbility_[(int)ShipAbility.Ap], bulletTargetPos_);
+                    }
                 }
+                else
+                {
+                    yield return null;
+
+                    break;
+                }
+
 
 
                 //

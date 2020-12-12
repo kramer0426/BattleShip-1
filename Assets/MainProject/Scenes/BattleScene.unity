@@ -256,6 +256,7 @@ MonoBehaviour:
   playerHpText_: {fileID: 933380401}
   enemyHpText_: {fileID: 814208983}
   stageText_: {fileID: 977539051}
+  playerShellText_: {fileID: 1554442813}
 --- !u!4 &228380641
 Transform:
   m_ObjectHideFlags: 0
@@ -528,7 +529,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -555,7 +556,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1554804131}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -730,7 +731,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1014,8 +1015,12 @@ MonoBehaviour:
   playerBattleClearPos_: {fileID: 1977350047}
   enemyStartPos_: {fileID: 898323305}
   enemyBattleReadyPos_: {fileID: 1649557859}
+  damageNumberEffect_: {fileID: 5823947033407422236, guid: 8edd0ae440e42ca48a42176b9cb5f71a,
+    type: 3}
   playerShip_: {fileID: 0}
   enemyShip_: {fileID: 0}
+  bPlayerShipReady_: 0
+  bEnemyShipReady_: 0
 --- !u!4 &1451041424
 Transform:
   m_ObjectHideFlags: 0
@@ -1045,6 +1050,88 @@ MonoBehaviour:
   battleShipExcel_: {fileID: 11400000, guid: 5a2551f06c79d7243bbad10964140d17, type: 2}
   battleShipEnemyExcel_: {fileID: 11400000, guid: 5774f6b07ee9f26428019b0897cc9df0,
     type: 2}
+  chapterExcel_: {fileID: 11400000, guid: 878c77dfb71aa0a4687f767244a3928e, type: 2}
+  shipSkinExcel_: {fileID: 11400000, guid: 29c1e109f2bf16f40bc3fd7a79626bb9, type: 2}
+  passiveSkillExcel_: {fileID: 11400000, guid: d765e167e3c644f45aaf16d4e16a09e9, type: 2}
+--- !u!1 &1554442812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1554442815}
+  - component: {fileID: 1554442814}
+  - component: {fileID: 1554442813}
+  m_Layer: 5
+  m_Name: PlayerShellText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1554442813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554442812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Shell : 0'
+--- !u!222 &1554442814
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554442812}
+  m_CullTransparentMesh: 0
+--- !u!224 &1554442815
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554442812}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1554804131}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -300, y: 463.4}
+  m_SizeDelta: {x: 300, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1554804130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,6 +1161,7 @@ RectTransform:
   m_Children:
   - {fileID: 977539053}
   - {fileID: 933380399}
+  - {fileID: 1554442815}
   - {fileID: 814208985}
   m_Father: {fileID: 47586397}
   m_RootOrder: 2

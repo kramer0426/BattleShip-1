@@ -20,6 +20,7 @@ namespace Sinabro
         public GameObject playerBattleClearPos_;
         public GameObject enemyStartPos_;
         public GameObject enemyBattleReadyPos_;
+        public GameObject damageNumberEffect_;
 
         //
         public ShipPlayer playerShip_;
@@ -28,6 +29,11 @@ namespace Sinabro
 
         //
         private bool bStart_;
+        public bool bPlayerShipReady_;
+        public bool bEnemyShipReady_;
+
+        //
+        private Vector3 effectTargetPos_ = new Vector3(0, 0, 0);
 
         //-----------------------------------------------
         // Instance
@@ -45,6 +51,8 @@ namespace Sinabro
 
             //
             bStart_ = false;
+            bPlayerShipReady_ = false;
+            bEnemyShipReady_ = false;
         }
 
         private void Start()
@@ -68,14 +76,13 @@ namespace Sinabro
         public void StartBattle()
         {
             bStart_ = true;
+            bPlayerShipReady_ = false;
+            bEnemyShipReady_ = false;
 
             CreatePlayerShip();
-
             CreateEnemyShip();
 
             battleUI_.UpdateStageText();
-            battleUI_.UpdatePlayerHp(playerShip_.hp_);
-            battleUI_.UpdateEnemyHp(enemyShip_.hp_);
         }
 
         //---------------------------------------------------------------------------------
@@ -94,9 +101,13 @@ namespace Sinabro
                     shipGO.transform.SetParent(battleField_.transform);
                     playerShip_.SetBattleShip(shipInfo, playerStartPos_.transform.position);
                     playerShip_.Move();
+
+                    bPlayerShipReady_ = true;
                 }
             }
 
+            battleUI_.UpdatePlayerHp((int)playerShip_.shipAbility_[(int)ShipAbility.Hp]);
+            battleUI_.UpdatePlayerShell(playerShip_.currentShellCnt_);
         }
 
         //---------------------------------------------------------------------------------
@@ -106,7 +117,35 @@ namespace Sinabro
         {
             // to do : select enemy 0 - 8 -> only one, 9 -> next ship, and range under 2 step ship
 
-            BattleShipEnemyEntity shipInfo = excelDatas_.GetEnemyBattleShip(0);
+            int createEnemyShipId = 0;
+            if (DataMgr.Instance.myInfo_g.currentChapter_ < DataMgr.BOSS_CHAPTER)
+            {
+                createEnemyShipId = 0;
+            }
+            else if (DataMgr.Instance.myInfo_g.currentChapter_ == DataMgr.BOSS_CHAPTER)
+            {
+                createEnemyShipId = 1;
+            }
+            else
+            {
+                int stage = DataMgr.Instance.myInfo_g.currentChapter_ / DataMgr.MAX_CHAPTER;
+
+                if (DataMgr.Instance.myInfo_g.currentChapter_ % DataMgr.MAX_CHAPTER == DataMgr.BOSS_CHAPTER)
+                {
+                    createEnemyShipId = stage + 1;
+                }
+                else
+                {
+                    int minEnemyLimite = stage - DataMgr.MIN_ENEMY_SHIP_LIMITE;
+                    if (minEnemyLimite <= 0)
+                        minEnemyLimite = 0;
+
+                    createEnemyShipId = Random.Range(minEnemyLimite, stage + 1);
+                }
+            }
+
+
+            BattleShipEnemyEntity shipInfo = excelDatas_.GetEnemyBattleShip(createEnemyShipId);
             if (shipInfo != null)
             {
                 GameObject resAsset = Resources.Load<GameObject>("Ship/" + shipInfo.ResourceName);
@@ -117,8 +156,12 @@ namespace Sinabro
                     shipGO.transform.SetParent(battleField_.transform);
                     enemyShip_.SetBattleShip(excelDatas_.GetEnemyBattleShip(0), enemyStartPos_.transform.position);
                     enemyShip_.Move();
+
+                    bEnemyShipReady_ = true;
                 }
             }
+
+            battleUI_.UpdateEnemyHp((int)enemyShip_.shipAbility_[(int)ShipAbility.Hp]);
         }
 
         //---------------------------------------------------------------------------------
@@ -126,7 +169,22 @@ namespace Sinabro
         //---------------------------------------------------------------------------------
         public void DestroyEnemy()
         {
+            bEnemyShipReady_ = false;
 
+            DataMgr.Instance.myInfo_g.currentChapter_++;
+
+            if (DataMgr.Instance.myInfo_g.currentChapter_ % DataMgr.MAX_CHAPTER == 0)
+            {
+                // go next stage : move right and Hp full up
+                playerShip_.shipState_ = ShipState.Clear;
+                playerShip_.Move();
+            }
+            else
+            {
+                Invoke("CreateEnemyShip", 1.0f);
+            }
+
+            battleUI_.UpdateStageText();
         }
 
         //---------------------------------------------------------------------------------
@@ -134,24 +192,73 @@ namespace Sinabro
         //---------------------------------------------------------------------------------
         public void DestroyPlayer()
         {
+            bPlayerShipReady_ = false;
 
+            enemyShip_.shipState_ = ShipState.Clear;
+            enemyShip_.Move();
         }
 
+        //---------------------------------------------------------------------------------
+        // ReStartBattle
+        //---------------------------------------------------------------------------------
+        public void ReStartBattle()
+        {
+            bPlayerShipReady_ = false;
+            bEnemyShipReady_ = false;
+
+            CreatePlayerShip();
+            CreateEnemyShip();
+
+            DataMgr.Instance.myInfo_g.currentChapter_ = DataMgr.Instance.myInfo_g.currentChapter_ / 10 * 10;
+            DataMgr.Instance.SaveData();
+
+            battleUI_.UpdateStageText();
+        }
+
+        //---------------------------------------------------------------------------------
+        // GoNextStage
+        //---------------------------------------------------------------------------------
+        public void GoNextStage()
+        {
+            playerShip_.SetBattleShip(playerShip_.battleShipInfo_, playerStartPos_.transform.position);
+            playerShip_.Move();
+
+            bPlayerShipReady_ = true;
+
+            battleUI_.UpdatePlayerHp((int)playerShip_.shipAbility_[(int)ShipAbility.Hp]);
+
+            CreateEnemyShip();
+        }
 
         //---------------------------------------------------------------------------------
         // HitToPlayer
         //---------------------------------------------------------------------------------
-        public void HitToPlayer(int damage)
+        public void HitToPlayer(int damage, DamageType type)
         {
-            playerShip_.Damage(damage);
+            playerShip_.Damage(damage, type);
         }
 
         //---------------------------------------------------------------------------------
         // HitToEnemy
         //---------------------------------------------------------------------------------
-        public void HitToEnemy(int damage)
+        public void HitToEnemy(int damage, DamageType type)
         {
-            enemyShip_.Damage(damage);
+            enemyShip_.Damage(damage, type);
+        }
+
+        //
+        public void CreateDamageEffect(Vector3 targetPos, int damge)
+        {
+            effectTargetPos_ = targetPos;
+            effectTargetPos_.x += Random.Range(-0.1f, 0.1f);
+            effectTargetPos_.y += Random.Range(0.1f, 0.2f);
+
+            GameObject effectGO = (GameObject)Instantiate(damageNumberEffect_, effectTargetPos_, this.transform.rotation);
+            DamageNumberEffect effect = effectGO.GetComponent<DamageNumberEffect>();
+            if (effect != null)
+            {
+                effect.CreateFx(damge, false);
+            }
         }
 
 

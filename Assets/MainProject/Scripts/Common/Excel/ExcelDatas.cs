@@ -72,8 +72,36 @@ public class ChapterEntity
 {
     public int ChapterID;
     public int UpgradeValue;
+}
 
+//
+// ShipSkinEntity
+//
+[System.Serializable]
+public class ShipSkinEntity
+{
+    public int Id;
+    public int BasttleShipID;
+    public string RresourceName;
+    public int PriceCash;
+    public int PriceGold;
+}
 
+//
+// PassiveSkillEntity
+//
+[System.Serializable]
+public class PassiveSkillEntity
+{
+    public int Id;
+    public int Rank;
+    public int LocalNameId;
+    public int LocalDescId;
+    public int Type;
+    public float Value1;
+    public float Value2;
+    public float Value3;
+    public int RandomRate;
 }
 
 namespace Sinabro
@@ -82,6 +110,9 @@ namespace Sinabro
     {
         [SerializeField] BattleShipDataExcel        battleShipExcel_;
         [SerializeField] BattleShipEnemyDataExcel   battleShipEnemyExcel_;
+        [SerializeField] ChapterDataExcel           chapterExcel_;
+        [SerializeField] ShipSkinDataExcel          shipSkinExcel_;
+        [SerializeField] PassiveSkillDataExcel      passiveSkillExcel_;
         
         //
         public BattleShipEntity GetBattleShip(int id)
@@ -105,6 +136,48 @@ namespace Sinabro
                 if (battleShipEnemyExcel_.Sheet1[i].Id == id)
                 {
                     return battleShipEnemyExcel_.Sheet1[i];
+                }
+            }
+
+            return null;
+        }
+
+        //
+        public ChapterEntity GetChapter(int id)
+        {
+            for (int i = 0; i < chapterExcel_.Sheet1.Count; ++i)
+            {
+                if (chapterExcel_.Sheet1[i].ChapterID == id)
+                {
+                    return chapterExcel_.Sheet1[i];
+                }
+            }
+
+            return null;
+        }
+
+        //
+        public ShipSkinEntity GetShipSkin(int id)
+        {
+            for (int i = 0; i < shipSkinExcel_.Sheet1.Count; ++i)
+            {
+                if (shipSkinExcel_.Sheet1[i].Id == id)
+                {
+                    return shipSkinExcel_.Sheet1[i];
+                }
+            }
+
+            return null;
+        }
+
+        //
+        public PassiveSkillEntity GetPassiveSkill(int id)
+        {
+            for (int i = 0; i < passiveSkillExcel_.Sheet1.Count; ++i)
+            {
+                if (passiveSkillExcel_.Sheet1[i].Id == id)
+                {
+                    return passiveSkillExcel_.Sheet1[i];
                 }
             }
 

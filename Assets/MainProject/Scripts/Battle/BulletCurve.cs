@@ -38,31 +38,28 @@ namespace Sinabro
             bPlayer_ = bPlayer;
 
             bezierPoint1 = this.transform.position;
-            bezierPoint1.y += 2.0f;
-            bezierPoint2 = bezierPoint1;
+            bezierPoint1.y += 1.0f;
 
             if (bPlayer_)
             {
                 bezierPoint1.x += (targetPos.x - this.transform.position.x) * 0.5f;
-                bezierPoint2.x += (targetPos.x - this.transform.position.x) * 0.5f;
             }
             else
             {
                 bezierPoint1.x -= (this.transform.position.x - targetPos.x) * 0.5f;
-                bezierPoint2.x -= (this.transform.position.x - targetPos.x) * 0.5f;
             }
 
-            LTBezierPath ltPath = new LTBezierPath(new Vector3[] { this.transform.position, bezierPoint1, bezierPoint2, targetPos });
-            LeanTween.move(this.gameObject, ltPath, DataMgr.CurveBulletMoveTime).setOnComplete(
+            LTSpline ltSpline = new LTSpline(new Vector3[] { this.transform.position, this.transform.position, bezierPoint1, targetPos, targetPos });
+            LeanTween.moveSpline(this.gameObject, ltSpline, DataMgr.CurveBulletMoveTime).setOnComplete(
             () =>
             {
                 if (bPlayer)
                 {
-                    BattleControl.Instance.HitToEnemy(damage);
+                    BattleControl.Instance.HitToEnemy(damage, DamageType.Curve);
                 }
                 else
                 {
-                    BattleControl.Instance.HitToPlayer(damage);
+                    BattleControl.Instance.HitToPlayer(damage, DamageType.Curve);
                 }
 
                 Destroy(this.gameObject);

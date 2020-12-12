@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 1619053911591604609}
   - component: {fileID: 1619053911591604623}
   m_Layer: 0
-  m_Name: PlayerBattleShip
+  m_Name: TestPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,6 +303,7 @@ MonoBehaviour:
     ReloadTime: 0
     ShellCnt: 0
     maxDamage: 0
+    ResourceName: 
   shakeControl_: {fileID: 1619053911591604623}
   bulletObject_: {fileID: 7377152493779445263, guid: fa3a4ed3b5748de469dff5f8981bbc57,
     type: 3}
@@ -313,6 +314,7 @@ MonoBehaviour:
   - {fileID: 1619053910635797606}
   hp_: 0
   ap_: 0
+  accuracy_: 0
   sideDp_: 0
   topDp_: 0
   torpedoDp_: 0

@@ -10,6 +10,7 @@ namespace Sinabro
         public Text playerHpText_;
         public Text enemyHpText_;
         public Text stageText_;
+        public Text playerShellText_;
 
         // Start is called before the first frame update
         void Start()
@@ -30,7 +31,7 @@ namespace Sinabro
             int chapter = 0;
 
             chapter = (DataMgr.Instance.myInfo_g.currentChapter_ % 10) + 1;
-            stage = DataMgr.Instance.myInfo_g.currentChapter_ / 10;
+            stage = (DataMgr.Instance.myInfo_g.currentChapter_) / 10 + 1;
 
             if (stage == 0)
             {
@@ -53,6 +54,20 @@ namespace Sinabro
         public void UpdateEnemyHp(int hp)
         {
             enemyHpText_.text = "Enemy HP : " + hp;
+        }
+
+        //
+        public void UpdatePlayerShell(int Shell)
+        {
+            if (Shell <= 0)
+            {
+                playerShellText_.text = "Shell : Reloading...";
+            }
+            else
+            {
+                playerShellText_.text = "Shell : " + Shell;
+            }
+            
         }
     }
 }

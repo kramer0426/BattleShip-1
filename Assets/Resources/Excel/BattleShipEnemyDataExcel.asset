@@ -16,6 +16,7 @@ MonoBehaviour:
   - Id: 0
     GainGold: 20
     Hp: 4
+    AttackType: 0
     Critical: 0
     BaseDamage: 1
     Stage: 0
@@ -34,6 +35,7 @@ MonoBehaviour:
   - Id: 1
     GainGold: 30
     Hp: 60
+    AttackType: 0
     Critical: 0
     BaseDamage: 2
     Stage: 10
@@ -48,10 +50,11 @@ MonoBehaviour:
     ReloadTime: 5
     ShellCnt: 100
     maxDamage: 100
-    ResourceName: TestEnemy
+    ResourceName: TestEnemy1
   - Id: 2
     GainGold: 50
     Hp: 200
+    AttackType: 0
     Critical: 0
     BaseDamage: 4
     Stage: 20
@@ -66,10 +69,11 @@ MonoBehaviour:
     ReloadTime: 5
     ShellCnt: 100
     maxDamage: 200
-    ResourceName: TestEnemy
+    ResourceName: TestEnemy2
   - Id: 3
     GainGold: 90
     Hp: 600
+    AttackType: 0
     Critical: 0
     BaseDamage: 8
     Stage: 30
@@ -88,6 +92,7 @@ MonoBehaviour:
   - Id: 4
     GainGold: 140
     Hp: 1400
+    AttackType: 0
     Critical: 0
     BaseDamage: 10
     Stage: 40
@@ -106,6 +111,7 @@ MonoBehaviour:
   - Id: 5
     GainGold: 200
     Hp: 2600
+    AttackType: 0
     Critical: 0
     BaseDamage: 15
     Stage: 50
@@ -124,6 +130,7 @@ MonoBehaviour:
   - Id: 6
     GainGold: 280
     Hp: 4600
+    AttackType: 0
     Critical: 0
     BaseDamage: 20
     Stage: 60

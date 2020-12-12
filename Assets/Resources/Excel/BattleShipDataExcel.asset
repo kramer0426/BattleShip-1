@@ -23,6 +23,7 @@ MonoBehaviour:
     BaseDamage: 1
     DamageIncrement: 1
     hp: 200
+    AttackType: 0
     Critical: 10
     SideDefence: 1
     TopDefence: 1
@@ -44,6 +45,7 @@ MonoBehaviour:
     BaseDamage: 2
     DamageIncrement: 2
     hp: 400
+    AttackType: 0
     Critical: 0
     SideDefence: 2
     TopDefence: 2
@@ -65,6 +67,7 @@ MonoBehaviour:
     BaseDamage: 4
     DamageIncrement: 4
     hp: 600
+    AttackType: 0
     Critical: 0
     SideDefence: 0
     TopDefence: 0
@@ -86,6 +89,7 @@ MonoBehaviour:
     BaseDamage: 8
     DamageIncrement: 8
     hp: 1000
+    AttackType: 0
     Critical: 0
     SideDefence: 0
     TopDefence: 0
@@ -107,6 +111,7 @@ MonoBehaviour:
     BaseDamage: 10
     DamageIncrement: 10
     hp: 1600
+    AttackType: 0
     Critical: 0
     SideDefence: 0
     TopDefence: 0
@@ -128,6 +133,7 @@ MonoBehaviour:
     BaseDamage: 15
     DamageIncrement: 15
     hp: 2600
+    AttackType: 0
     Critical: 0
     SideDefence: 0
     TopDefence: 0
@@ -149,6 +155,7 @@ MonoBehaviour:
     BaseDamage: 20
     DamageIncrement: 20
     hp: 4200
+    AttackType: 0
     Critical: 0
     SideDefence: 0
     TopDefence: 0
@@ -170,6 +177,7 @@ MonoBehaviour:
     BaseDamage: 30
     DamageIncrement: 30
     hp: 6800
+    AttackType: 0
     Critical: 0
     SideDefence: 0
     TopDefence: 0
@@ -191,6 +199,7 @@ MonoBehaviour:
     BaseDamage: 45
     DamageIncrement: 45
     hp: 11000
+    AttackType: 0
     Critical: 0
     SideDefence: 0
     TopDefence: 0
@@ -212,6 +221,7 @@ MonoBehaviour:
     BaseDamage: 65
     DamageIncrement: 65
     hp: 17800
+    AttackType: 0
     Critical: 0
     SideDefence: 0
     TopDefence: 0
