@@ -28,10 +28,10 @@ namespace Sinabro
 
             toPos = transform.position;
             toPos.y += 0.4f;
-            LeanTween.move(this.gameObject, toPos, 0.3f).setEase(LeanTweenType.easeOutQuad).setOnComplete(
+            LeanTween.move(this.gameObject, toPos, 0.3f / BattleControl.Instance.battleTimeScale_).setEase(LeanTweenType.easeOutQuad).setOnComplete(
                             () =>
                             {
-                                LeanTween.value(this.gameObject, 1.0f, 0.0f, 0.3f).setEase(LeanTweenType.linear).setOnUpdate(value =>
+                                LeanTween.value(this.gameObject, 1.0f, 0.0f, 0.3f / BattleControl.Instance.battleTimeScale_).setEase(LeanTweenType.linear).setOnUpdate(value =>
                                 {
                                     numberColor.a = value;
                                     numberControl.SetColor(numberColor);
@@ -39,7 +39,7 @@ namespace Sinabro
                                 });
                             });
 
-            Invoke("DestroyEffect", 2.0f);
+            Invoke("DestroyEffect", 2.0f / BattleControl.Instance.battleTimeScale_);
         }
 
         //

@@ -204,6 +204,8 @@ namespace Sinabro
         public const float ClearBattlePlayerMoveTime = 3.0f;
         public const float LineBulletMoveTime = 1.0f;
         public const float CurveBulletMoveTime = 1.5f;
+        public const float PlaneBombMoveInTime = 3.0f;
+        public const float PlaneBombMoveOutTime = 1.5f;
     }
 
 

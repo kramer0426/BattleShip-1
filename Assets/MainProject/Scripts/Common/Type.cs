@@ -38,7 +38,9 @@ public enum ShipAbility
     FireTime = 6,
     ReloadTime = 7,
     ShellCnt = 8,
-    MAX = 9
+    CriticalRate = 9,
+    CriticalDamage = 10,
+    MAX = 11
 }
 
 

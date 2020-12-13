@@ -69,6 +69,12 @@ namespace Sinabro
             }
             
         }
+
+        //
+        public void OnPlayerPlaneSupport()
+        {
+            BattleControl.Instance.CallPlayerPlaneSupport();
+        }
     }
 }
 

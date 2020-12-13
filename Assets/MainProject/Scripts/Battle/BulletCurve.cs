@@ -50,7 +50,7 @@ namespace Sinabro
             }
 
             LTSpline ltSpline = new LTSpline(new Vector3[] { this.transform.position, this.transform.position, bezierPoint1, targetPos, targetPos });
-            LeanTween.moveSpline(this.gameObject, ltSpline, DataMgr.CurveBulletMoveTime).setOnComplete(
+            LeanTween.moveSpline(this.gameObject, ltSpline, DataMgr.CurveBulletMoveTime / BattleControl.Instance.battleTimeScale_).setOnComplete(
             () =>
             {
                 if (bPlayer)

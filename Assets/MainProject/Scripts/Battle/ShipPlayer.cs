@@ -56,6 +56,8 @@ namespace Sinabro
             shipAbility_[6] = battleShipInfo_.FireTime;
             shipAbility_[7] = battleShipInfo_.ReloadTime;
             shipAbility_[8] = battleShipInfo_.ShellCnt;
+            shipAbility_[9] = battleShipInfo_.CriticalRate;
+            shipAbility_[10] = battleShipInfo_.CriticalDamage;
         }
 
         //----------------------------------------------------------------------------------------
@@ -65,7 +67,7 @@ namespace Sinabro
         {
             if (shipState_ == ShipState.Start)
             {
-                LeanTween.move(this.gameObject, BattleControl.Instance.playerBattleReadyPos_.transform.position, 1.0f).setEaseInOutQuad().setOnComplete(
+                LeanTween.move(this.gameObject, BattleControl.Instance.playerBattleReadyPos_.transform.position, 1.0f / BattleControl.Instance.battleTimeScale_).setEaseInOutQuad().setOnComplete(
                 () =>
                 {
                     shipState_ = ShipState.Battle;
@@ -75,7 +77,7 @@ namespace Sinabro
             }
             else if (shipState_ == ShipState.Clear)
             {
-                LeanTween.move(this.gameObject, BattleControl.Instance.playerBattleClearPos_.transform.position, 3.0f).setEaseInOutQuad().setOnComplete(
+                LeanTween.move(this.gameObject, BattleControl.Instance.playerBattleClearPos_.transform.position, 3.0f / BattleControl.Instance.battleTimeScale_).setEaseInOutQuad().setOnComplete(
                 () =>
                 {
                     BattleControl.Instance.GoNextStage();
@@ -122,6 +124,7 @@ namespace Sinabro
 
             if ((int)BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.Accuracy] >= Random.Range(0, 99))
             {
+                // default formula
                 if (type == DamageType.Line)
                 {
                     formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.SideDp];
@@ -135,6 +138,13 @@ namespace Sinabro
                     formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.TorpedoDp];
                 }
 
+                // critical
+                if ((int)BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.CriticalRate] >= Random.Range(0, 99))
+                {
+                    Debug.Log("Critical to player");
+                    formulaDamage += (int)((float)formulaDamage * BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.CriticalDamage] * 0.01f);
+                }
+               
                 // limite min damage
                 if (formulaDamage <= 0)
                     formulaDamage = 1;
@@ -155,12 +165,12 @@ namespace Sinabro
             {
                 shipState_ = ShipState.Die;
                 BattleControl.Instance.DestroyPlayer();
-                Invoke("Die", 0.3f);
+                Invoke("Die", 0.3f / BattleControl.Instance.battleTimeScale_);
             }
             else
             {
                 if (formulaDamage > 0)
-                    StartCoroutine(shakeControl_.Shake(this.gameObject.transform.position, 0.2f, 0.02f));
+                    StartCoroutine(shakeControl_.Shake(this.gameObject.transform.position, 0.2f / BattleControl.Instance.battleTimeScale_, 0.02f));
             }
         }
 
@@ -185,7 +195,7 @@ namespace Sinabro
 
         IEnumerator CoroutineFire()
         {
-            yield return new WaitForSeconds(shipAbility_[(int)ShipAbility.FireTime]);
+            yield return new WaitForSeconds(shipAbility_[(int)ShipAbility.FireTime] / BattleControl.Instance.battleTimeScale_);
 
             int fireCnt = guns_.Length;
 
@@ -196,7 +206,7 @@ namespace Sinabro
                 {
                     yield return null;
 
-                    Invoke("ReloadShell", shipAbility_[(int)ShipAbility.ReloadTime]);
+                    Invoke("ReloadShell", shipAbility_[(int)ShipAbility.ReloadTime] / BattleControl.Instance.battleTimeScale_);
 
                     break;
                 }
@@ -206,7 +216,7 @@ namespace Sinabro
                 {
                     fireCnt = guns_.Length;
 
-                    yield return new WaitForSeconds(shipAbility_[(int)ShipAbility.FireTime]);
+                    yield return new WaitForSeconds(shipAbility_[(int)ShipAbility.FireTime] / BattleControl.Instance.battleTimeScale_);
                 }
 
                 //
@@ -245,7 +255,7 @@ namespace Sinabro
 
                 BattleControl.Instance.battleUI_.UpdatePlayerShell(currentShellCnt_);
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.1f / BattleControl.Instance.battleTimeScale_);
             }
         }
     }

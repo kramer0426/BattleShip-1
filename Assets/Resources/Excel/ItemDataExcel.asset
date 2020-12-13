@@ -1,0 +1,343 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1176ae8f69c68e47b26c41146a2a59d, type: 3}
+  m_Name: ItemDataExcel
+  m_EditorClassIdentifier: 
+  Sheet1:
+  - Id: 0
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 8.45
+  - Id: 1
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 8.45
+  - Id: 2
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 8.45
+  - Id: 3
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 8.45
+  - Id: 4
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 8.45
+  - Id: 5
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 8.45
+  - Id: 6
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 8.45
+  - Id: 7
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 8.45
+  - Id: 8
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 8.45
+  - Id: 9
+    Rank: 1
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 8.45
+  - Id: 10
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 3.25
+  - Id: 11
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 3.25
+  - Id: 12
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 3.25
+  - Id: 13
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 3.25
+  - Id: 14
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 3.25
+  - Id: 15
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 3.25
+  - Id: 16
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 3.25
+  - Id: 17
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 3.25
+  - Id: 18
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 3.25
+  - Id: 19
+    Rank: 2
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 3.25
+  - Id: 20
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 1.14
+  - Id: 21
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 1.14
+  - Id: 22
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 1.14
+  - Id: 23
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 1.14
+  - Id: 24
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 1.14
+  - Id: 25
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 1.14
+  - Id: 26
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 1.14
+  - Id: 27
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 1.14
+  - Id: 28
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 1.14
+  - Id: 29
+    Rank: 3
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 1.14
+  - Id: 30
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 0.1
+  - Id: 31
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 0.1
+  - Id: 32
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 0.1
+  - Id: 33
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 0.1
+  - Id: 34
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 0.1
+  - Id: 35
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 0.1
+  - Id: 36
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 0.1
+  - Id: 37
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 0.1
+  - Id: 38
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 0.1
+  - Id: 39
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 0.1
+  - Id: 40
+    Rank: 4
+    LocalNameId: 0
+    LocalDescId: 0
+    Type: 0
+    Value1: 10
+    Value2: 5.5
+    RandomRate: 0.1

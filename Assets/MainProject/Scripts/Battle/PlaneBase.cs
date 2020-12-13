@@ -8,8 +8,11 @@ namespace Sinabro
     {
         public bool bPlayer_;
 
-        public virtual void SetPlane() { }
+        public virtual void SetPlane(bool bPlayer, int damage) { }
 
-        public virtual void Die() { }
+        public virtual void Die() 
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

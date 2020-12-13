@@ -20,7 +20,11 @@ namespace Sinabro
         public GameObject playerBattleClearPos_;
         public GameObject enemyStartPos_;
         public GameObject enemyBattleReadyPos_;
+        public GameObject playerPlaneStartPos_;
+        public GameObject enemyPlaneStartPos_;
         public GameObject damageNumberEffect_;
+
+        public GameObject[] planePrefab_;
 
         //
         public ShipPlayer playerShip_;
@@ -31,6 +35,9 @@ namespace Sinabro
         private bool bStart_;
         public bool bPlayerShipReady_;
         public bool bEnemyShipReady_;
+
+        //
+        public float battleTimeScale_ = 1.0f;
 
         //
         private Vector3 effectTargetPos_ = new Vector3(0, 0, 0);
@@ -78,6 +85,8 @@ namespace Sinabro
             bStart_ = true;
             bPlayerShipReady_ = false;
             bEnemyShipReady_ = false;
+
+            battleTimeScale_ = 1.0f;
 
             CreatePlayerShip();
             CreateEnemyShip();
@@ -181,7 +190,7 @@ namespace Sinabro
             }
             else
             {
-                Invoke("CreateEnemyShip", 1.0f);
+                Invoke("CreateEnemyShip", 1.0f / battleTimeScale_);
             }
 
             battleUI_.UpdateStageText();
@@ -246,6 +255,14 @@ namespace Sinabro
             enemyShip_.Damage(damage, type);
         }
 
+        //---------------------------------------------------------------------------------
+        // CallPlayerPlaneSupport
+        //---------------------------------------------------------------------------------
+        public void CallPlayerPlaneSupport()
+        {
+            StartCoroutine(CoroutineCallSupportPlane());
+        }
+
         //
         public void CreateDamageEffect(Vector3 targetPos, int damge)
         {
@@ -258,6 +275,48 @@ namespace Sinabro
             if (effect != null)
             {
                 effect.CreateFx(damge, false);
+            }
+        }
+
+        //
+        IEnumerator CoroutineCallSupportPlane()
+        {
+            int fireCnt = 5;
+            int rndPlane = Random.Range(0, 2);
+
+            while (true)
+            {
+                //
+                if (fireCnt <= 0)
+                {
+                    yield return null;
+
+                    break;
+                }
+
+                //
+                if (BattleControl.Instance.bEnemyShipReady_)
+                {
+                    GameObject shipGO = (GameObject)Instantiate(planePrefab_[rndPlane], playerPlaneStartPos_.transform.position, this.transform.rotation);
+                    PlaneBase plane = shipGO.GetComponent<PlaneBase>();
+                    if (plane != null)
+                    {
+                        plane.SetPlane(true, 1);
+                    }
+                }
+                else
+                {
+                    yield return null;
+
+                    break;
+                }
+
+
+
+                //
+                fireCnt--;
+
+                yield return new WaitForSeconds(0.1f / BattleControl.Instance.battleTimeScale_);
             }
         }
 

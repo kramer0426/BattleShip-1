@@ -26,6 +26,8 @@ public class BattleShipEntity
     public int TorpedoDefence;
     public int Contry;
     public int Accuracy;
+    public float CriticalRate;
+    public float CriticalDamage;
     public float FireTime;
     public float ReloadTime;
     public int ShellCnt;
@@ -55,6 +57,8 @@ public class BattleShipEnemyEntity
     public int TorpedoDefence;
     public int Contry;
     public int Accuracy;
+    public float CriticalRate;
+    public float CriticalDamage;
     public float FireTime;
     public float ReloadTime;
     public int ShellCnt;
@@ -104,6 +108,22 @@ public class PassiveSkillEntity
     public int RandomRate;
 }
 
+//
+// ItemEntity
+//
+[System.Serializable]
+public class ItemEntity
+{
+    public int Id;
+    public int Rank;
+    public int LocalNameId;
+    public int LocalDescId;
+    public int Type;
+    public float Value1;
+    public float Value2;
+    public float RandomRate;
+}
+
 namespace Sinabro
 {
     public class ExcelDatas : MonoBehaviour
@@ -113,6 +133,7 @@ namespace Sinabro
         [SerializeField] ChapterDataExcel           chapterExcel_;
         [SerializeField] ShipSkinDataExcel          shipSkinExcel_;
         [SerializeField] PassiveSkillDataExcel      passiveSkillExcel_;
+        [SerializeField] ItemDataExcel              itemExcel_;
         
         //
         public BattleShipEntity GetBattleShip(int id)
@@ -178,6 +199,20 @@ namespace Sinabro
                 if (passiveSkillExcel_.Sheet1[i].Id == id)
                 {
                     return passiveSkillExcel_.Sheet1[i];
+                }
+            }
+
+            return null;
+        }
+
+        //
+        public ItemEntity GetItem(int id)
+        {
+            for (int i = 0; i < itemExcel_.Sheet1.Count; ++i)
+            {
+                if (itemExcel_.Sheet1[i].Id == id)
+                {
+                    return itemExcel_.Sheet1[i];
                 }
             }
 

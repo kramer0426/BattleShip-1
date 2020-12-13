@@ -34,7 +34,7 @@ namespace Sinabro
         {
             bPlayer_ = bPlayer;
 
-            LeanTween.move(this.gameObject, targetPos, DataMgr.LineBulletMoveTime).setOnComplete(
+            LeanTween.move(this.gameObject, targetPos, DataMgr.LineBulletMoveTime / BattleControl.Instance.battleTimeScale_).setOnComplete(
             () =>
             {
                 if (bPlayer)
