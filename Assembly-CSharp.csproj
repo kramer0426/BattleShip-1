@@ -74,6 +74,7 @@
     <Compile Include="Assets\Plugin\ExcelImporter\Example\Scripts\Example.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\UI\NumberControlUI.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\Excel\BattleShipDataExcel.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Common\Excel\ItemDataExcel.cs" />
     <Compile Include="Assets\MainProject\Scripts\Battle\ShipPlayer.cs" />
     <Compile Include="Assets\MainProject\Scripts\Effect\ShakeControl.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\DataMgr.cs" />
@@ -98,7 +99,8 @@
     <Compile Include="Assets\MainProject\Scripts\Common\Table\SoundTable.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\Excel\BattleShipEnemyDataExcel.cs" />
     <Compile Include="Assets\Plugin\LeanTween\Framework\LTDescr.cs" />
-    <Compile Include="Assets\MainProject\Scripts\Common\Excel\ItemDataExcel.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\PassiveBase.cs" />
+    <Compile Include="Assets\MainProject\Scripts\Battle\PassiveDefenseUp.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Plugin\LeanTween\ReadMe.txt" />
