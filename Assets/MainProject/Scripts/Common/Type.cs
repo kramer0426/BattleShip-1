@@ -43,6 +43,74 @@ public enum ShipAbility
     MAX = 11
 }
 
+public enum PassiveValueType
+{
+    AllDp = 0,
+    AllAp = 1,
+    CriticalRate = 2,
+    CriticalDamage = 3,
+    Accuracy = 4,
+    AvoidRate = 5,
+    ShellCnt = 6,
+    ReloadTime = 7,
+    AddMyDamage = 8,
+    TorpedoAttack = 9,
+    AvoidTorpedo = 10,
+    MyHp = 11,
+    FleetAp = 12,
+    MAX = 13
+}
+
+public enum PassiveType
+{
+    DefenseUp = 0,
+    AttackUp = 1,
+    CriticalRateUp = 2,
+    TorpedoDamageDown = 3,
+    PlaneShootingDownRate = 4,
+    ReloadDown = 5,
+    AccuracyUp = 6,
+    HpUp = 7,
+    AllFleetHpRecoverIfEnemyDestroy = 8,
+    AttackUpOnesIfEnemyDestroy = 9,
+    AllDamageDownAndAttackDown = 10,
+    HpRecoverByAttack = 11,
+    AvoidRateUp = 12,
+    MaxShellUp = 13,
+    CriticalDamageUp = 14,
+    AttackUpForBoss = 15,
+    AttackUpIfOtherCountry = 16,
+    PlaneSupport = 17,
+    DefenseUpAndAvoidUp = 18,
+    AttackUpAndAccuracyUp = 19,
+    CriticalRateUpAndCriticalDamageUp = 20,
+    MaxShellUpAndReloadDown = 21,
+    AllFleetHpRecoverIfDestroyMe = 22,
+    EnemyDestroyIfDestroyMe = 23,
+    DamageDownIfSameCountry = 24,
+    AttackUpIfMyHighDefenseThenEnemyDefense = 25,
+    AvoidTorpedo = 26,
+    AttackUpAddedMax10IfEnemyDestroy = 27,
+    AttackUpAndMyDamageUp = 28,
+    ContinueAttack = 29,
+    TorpedoAttackUpAndAvoidTorpedo = 30,
+    GainGoldUpIfEnemyDestroy = 31,
+    GainCashIfEnemyDestroy = 32,
+    CompleteAccuracy = 33,
+    AllFleetHpUp = 34,
+    AllFleetAttackUp = 35,
+    AttackUpAndHpUp = 36,
+    Resurrection = 37,
+    AllFleetAvoidUp = 38,
+    EnemyAttackReflection = 39,
+    AttackDownAndHpDownAndAllFleetAttackUp = 40,
+    EnemyMaxHpDown = 41,
+    AllFleetChaneCountryToSameEnemey = 42,
+    FixedAvoidRate = 43,
+    MAX = 44
+}
+
+
 
 
 //
