@@ -23,8 +23,7 @@ public class BattleShipEntity
     public int Critical;
     public int SideDefence;
     public int TopDefence;
-    public int TorpedoDefence;
-    public int Contry;
+    public int Country;
     public int Accuracy;
     public float CriticalRate;
     public float CriticalDamage;
@@ -54,8 +53,7 @@ public class BattleShipEnemyEntity
     public int SupportTorpedo;
     public int SideDefence;
     public int TopDefence;
-    public int TorpedoDefence;
-    public int Contry;
+    public int Country;
     public int Accuracy;
     public float CriticalRate;
     public float CriticalDamage;
@@ -64,6 +62,7 @@ public class BattleShipEnemyEntity
     public int ShellCnt;
     public int maxDamage;
     public string ResourceName;
+    public string PassiveIds;
 
 
 }

@@ -82,6 +82,14 @@ namespace Sinabro
         //---------------------------------------------------------------------------------
         public void StartBattle()
         {
+            // test code ---------------------------------------------------------------
+            MyShipData shipData = new MyShipData();
+            shipData.shipId_ = 0;
+            shipData.shipInfo_ = excelDatas_.GetBattleShip(shipData.shipId_);
+            shipData.passiveId_ = 0;
+            DataMgr.Instance.myInfo_g.myShipDataList_.Add(shipData);
+            //--------------------------------------------------------------------------
+
             bStart_ = true;
             bPlayerShipReady_ = false;
             bEnemyShipReady_ = false;
@@ -99,16 +107,16 @@ namespace Sinabro
         //---------------------------------------------------------------------------------
         private void CreatePlayerShip()
         {
-            BattleShipEntity shipInfo = excelDatas_.GetBattleShip(0);
-            if (shipInfo != null)
+            MyShipData shipData = DataMgr.Instance.myInfo_g.myShipDataList_[0];
+            if (shipData != null)
             {
-                GameObject resAsset = Resources.Load<GameObject>("Ship/" + shipInfo.ResourceName);
+                GameObject resAsset = Resources.Load<GameObject>("Ship/" + shipData.shipInfo_.ResourceName);
                 GameObject shipGO = (GameObject)Instantiate(resAsset, Vector3.zero, this.transform.rotation);
                 playerShip_ = shipGO.GetComponent<ShipPlayer>();
                 if (playerShip_ != null)
                 {
                     shipGO.transform.SetParent(battleField_.transform);
-                    playerShip_.SetBattleShip(shipInfo, playerStartPos_.transform.position);
+                    playerShip_.SetBattleShip(shipData, playerStartPos_.transform.position);
                     playerShip_.Move();
 
                     bPlayerShipReady_ = true;
@@ -193,6 +201,8 @@ namespace Sinabro
                 Invoke("CreateEnemyShip", 1.0f / battleTimeScale_);
             }
 
+            playerShip_.ActivatePassiveByEnemyShip();
+
             battleUI_.UpdateStageText();
         }
 
@@ -229,7 +239,7 @@ namespace Sinabro
         //---------------------------------------------------------------------------------
         public void GoNextStage()
         {
-            playerShip_.SetBattleShip(playerShip_.battleShipInfo_, playerStartPos_.transform.position);
+            playerShip_.SetBattleShip(playerShip_.battleShipData_, playerStartPos_.transform.position);
             playerShip_.Move();
 
             bPlayerShipReady_ = true;
@@ -258,9 +268,9 @@ namespace Sinabro
         //---------------------------------------------------------------------------------
         // CallPlayerPlaneSupport
         //---------------------------------------------------------------------------------
-        public void CallPlayerPlaneSupport()
+        public void CallPlayerPlaneSupport(bool bPlayer, int ap)
         {
-            StartCoroutine(CoroutineCallSupportPlane());
+            StartCoroutine(CoroutineCallSupportPlane(bPlayer, ap));
         }
 
         //
@@ -279,7 +289,7 @@ namespace Sinabro
         }
 
         //
-        IEnumerator CoroutineCallSupportPlane()
+        IEnumerator CoroutineCallSupportPlane(bool bPlayer, int ap)
         {
             int fireCnt = 5;
             int rndPlane = Random.Range(0, 2);
@@ -295,13 +305,13 @@ namespace Sinabro
                 }
 
                 //
-                if (BattleControl.Instance.bEnemyShipReady_)
+                if (BattleControl.Instance.bEnemyShipReady_ && BattleControl.Instance.bPlayerShipReady_)
                 {
                     GameObject shipGO = (GameObject)Instantiate(planePrefab_[rndPlane], playerPlaneStartPos_.transform.position, this.transform.rotation);
                     PlaneBase plane = shipGO.GetComponent<PlaneBase>();
                     if (plane != null)
                     {
-                        plane.SetPlane(true, 1);
+                        plane.SetPlane(bPlayer, ap);
                     }
                 }
                 else
@@ -319,7 +329,5 @@ namespace Sinabro
                 yield return new WaitForSeconds(0.1f / BattleControl.Instance.battleTimeScale_);
             }
         }
-
-
     }
 }

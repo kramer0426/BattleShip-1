@@ -31,6 +31,8 @@ namespace Sinabro
         {
             bPlayer_ = bPlayer;
 
+            Invoke("ActivatePassive", (DataMgr.PlaneBombMoveInTime - Random.Range(1.0f, 1.5f)) / BattleControl.Instance.battleTimeScale_);
+
             if (bPlayer_)
             {
                 startPos = BattleControl.Instance.playerPlaneStartPos_.transform.position;

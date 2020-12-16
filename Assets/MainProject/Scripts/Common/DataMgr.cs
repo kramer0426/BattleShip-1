@@ -61,12 +61,15 @@ namespace Sinabro
     public class MyShipData
     {
         //
+        public int shipId_;
         public BattleShipEntity shipInfo_;
         public bool bOpen_;
         public bool bJoinFleet_;
 
         //
-        public int[] equipItems_ = new int[DataMgr.MAX_ITEM_SLOT];
+        public int[] equipItemIds_ = new int[DataMgr.MAX_ITEM_SLOT];
+        public int passiveId_;
+        public float[] shipAbility_ = new float[(int)ShipAbility.MAX];
 
         //
         public int upgradeLevel_;
@@ -75,9 +78,19 @@ namespace Sinabro
 
         public MyShipData()
         {
+            shipId_ = 0;
             bOpen_ = false;
             bJoinFleet_ = false;
             upgradeLevel_ = 0;
+            passiveId_ = 0;
+            for (int i = 0; i < DataMgr.MAX_ITEM_SLOT; ++i)
+                equipItemIds_[i] = 0;
+        }
+
+        //
+        public void MakeShipAbility()
+        {
+
         }
 
     }

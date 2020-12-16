@@ -40,7 +40,8 @@ public enum ShipAbility
     ShellCnt = 8,
     CriticalRate = 9,
     CriticalDamage = 10,
-    MAX = 11
+    AvoidRate = 11,
+    MAX = 12
 }
 
 public enum PassiveValueType

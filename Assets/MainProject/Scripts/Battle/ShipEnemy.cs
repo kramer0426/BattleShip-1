@@ -20,6 +20,7 @@ namespace Sinabro
         //
         public int currentShellCnt_ = 0;
         public float[] shipAbility_ = new float[(int)ShipAbility.MAX];
+        public PassiveSkillEntity passiveInfo_ = null;
 
         //
         private void FixedUpdate()
@@ -35,6 +36,23 @@ namespace Sinabro
         //----------------------------------------------------------------------------------------
         public void SetBattleShip(BattleShipEnemyEntity battleShip, Vector3 startPos)
         {
+            //
+            string[] values = null;
+            values = battleShip.PassiveIds.Split(',');
+            List<int> passiveIds = new List<int>();
+            if (values != null)
+            {
+                for (int i = 0; i < values.Length; ++i)
+                {
+                    if (values[i].Length != 0) passiveIds.Add(int.Parse(values[i]));
+                }
+            }
+
+            //
+            passiveInfo_ = BattleControl.Instance.excelDatas_.GetPassiveSkill(passiveIds[Random.Range(0, passiveIds.Count)]);
+
+
+            //
             battleShipInfo_ = battleShip;
             shipState_ = ShipState.Start;
             transform.position = startPos;
@@ -46,12 +64,13 @@ namespace Sinabro
             shipAbility_[2] = battleShipInfo_.Accuracy;
             shipAbility_[3] = battleShipInfo_.SideDefence;
             shipAbility_[4] = battleShipInfo_.TopDefence;
-            shipAbility_[5] = battleShipInfo_.TorpedoDefence;
+            shipAbility_[5] = 0;                                        // torpedo damage down
             shipAbility_[6] = battleShipInfo_.FireTime;
             shipAbility_[7] = battleShipInfo_.ReloadTime;
             shipAbility_[8] = battleShipInfo_.ShellCnt;
             shipAbility_[9] = battleShipInfo_.CriticalRate;
             shipAbility_[10] = battleShipInfo_.CriticalDamage;
+            shipAbility_[11] = 0;                                       // avoid rate
 
             // add stage value
             int upgradeValue = BattleControl.Instance.excelDatas_.GetChapter(DataMgr.Instance.myInfo_g.currentChapter_).UpgradeValue;
@@ -60,6 +79,22 @@ namespace Sinabro
 
             shipAbility_[9] += upgradeValue;
             shipAbility_[10] += upgradeValue;
+
+        }
+
+        //----------------------------------------------------------------------------------------
+        // ActivatePassiveByPlayerShip
+        //----------------------------------------------------------------------------------------
+        public void ActivatePassiveByPlayerShip()
+        {
+
+        }
+
+        //----------------------------------------------------------------------------------------
+        // ActivatePassiveByEnemyPlane
+        //----------------------------------------------------------------------------------------
+        public void ActivatePassiveByPlayerPlane(PlaneBase targetPlane)
+        {
 
         }
 
@@ -128,7 +163,7 @@ namespace Sinabro
             // make damage
             int formulaDamage = 0;
 
-            if ((int)BattleControl.Instance.playerShip_.shipAbility_[(int)ShipAbility.Accuracy] >= Random.Range(0, 99))
+            if ((int)BattleControl.Instance.playerShip_.shipAbility_[(int)ShipAbility.Accuracy] - (int)shipAbility_[(int)ShipAbility.AvoidRate] >= Random.Range(0, 99))
             {
                 if (type == DamageType.Line)
                 {

@@ -26,8 +26,8 @@ MonoBehaviour:
     Critical: 10
     SideDefence: 1
     TopDefence: 1
-    TorpedoDefence: 1
-    Contry: 1
+    TorpedoDefence: 0
+    Country: 1
     Accuracy: 30
     CriticalRate: 5
     CriticalDamage: 5
@@ -49,8 +49,8 @@ MonoBehaviour:
     Critical: 0
     SideDefence: 2
     TopDefence: 2
-    TorpedoDefence: 2
-    Contry: 2
+    TorpedoDefence: 0
+    Country: 2
     Accuracy: 32
     CriticalRate: 5
     CriticalDamage: 5
@@ -73,7 +73,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 3
+    Country: 3
     Accuracy: 34
     CriticalRate: 5
     CriticalDamage: 5
@@ -96,7 +96,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 4
+    Country: 4
     Accuracy: 36
     CriticalRate: 5
     CriticalDamage: 5
@@ -119,7 +119,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 1
+    Country: 1
     Accuracy: 38
     CriticalRate: 5
     CriticalDamage: 5
@@ -142,7 +142,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 2
+    Country: 2
     Accuracy: 40
     CriticalRate: 5
     CriticalDamage: 5
@@ -165,7 +165,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 3
+    Country: 3
     Accuracy: 42
     CriticalRate: 5
     CriticalDamage: 5
@@ -188,7 +188,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 4
+    Country: 4
     Accuracy: 44
     CriticalRate: 5
     CriticalDamage: 5
@@ -211,7 +211,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 1
+    Country: 1
     Accuracy: 46
     CriticalRate: 5
     CriticalDamage: 5
@@ -234,7 +234,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 2
+    Country: 2
     Accuracy: 48
     CriticalRate: 5
     CriticalDamage: 5

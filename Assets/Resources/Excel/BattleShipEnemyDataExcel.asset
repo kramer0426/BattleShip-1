@@ -23,8 +23,8 @@ MonoBehaviour:
     SupportTorpedo: 0
     SideDefence: 1
     TopDefence: 1
-    TorpedoDefence: 1
-    Contry: 1
+    TorpedoDefence: 0
+    Country: 1
     Accuracy: 30
     CriticalRate: 5
     CriticalDamage: 5
@@ -33,6 +33,7 @@ MonoBehaviour:
     ShellCnt: 100
     maxDamage: 50
     ResourceName: TestEnemy
+    PassiveIds: 1,2,3
   - Id: 1
     GainGold: 30
     Hp: 60
@@ -43,8 +44,8 @@ MonoBehaviour:
     SupportTorpedo: 0
     SideDefence: 2
     TopDefence: 2
-    TorpedoDefence: 2
-    Contry: 2
+    TorpedoDefence: 0
+    Country: 2
     Accuracy: 32
     CriticalRate: 5
     CriticalDamage: 5
@@ -53,6 +54,7 @@ MonoBehaviour:
     ShellCnt: 100
     maxDamage: 100
     ResourceName: TestEnemy1
+    PassiveIds: 1,2,3
   - Id: 2
     GainGold: 50
     Hp: 200
@@ -64,7 +66,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 3
+    Country: 3
     Accuracy: 34
     CriticalRate: 5
     CriticalDamage: 5
@@ -73,6 +75,7 @@ MonoBehaviour:
     ShellCnt: 100
     maxDamage: 200
     ResourceName: TestEnemy2
+    PassiveIds: 1,2,3
   - Id: 3
     GainGold: 90
     Hp: 600
@@ -84,7 +87,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 4
+    Country: 4
     Accuracy: 36
     CriticalRate: 5
     CriticalDamage: 5
@@ -93,6 +96,7 @@ MonoBehaviour:
     ShellCnt: 100
     maxDamage: 300
     ResourceName: TestEnemy
+    PassiveIds: 1,2,3
   - Id: 4
     GainGold: 140
     Hp: 1400
@@ -104,7 +108,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 1
+    Country: 1
     Accuracy: 38
     CriticalRate: 5
     CriticalDamage: 5
@@ -113,6 +117,7 @@ MonoBehaviour:
     ShellCnt: 100
     maxDamage: 500
     ResourceName: TestEnemy
+    PassiveIds: 1,2,3
   - Id: 5
     GainGold: 200
     Hp: 2600
@@ -124,7 +129,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 2
+    Country: 2
     Accuracy: 40
     CriticalRate: 5
     CriticalDamage: 5
@@ -133,6 +138,7 @@ MonoBehaviour:
     ShellCnt: 100
     maxDamage: 750
     ResourceName: TestEnemy
+    PassiveIds: 1,2,3
   - Id: 6
     GainGold: 280
     Hp: 4600
@@ -144,7 +150,7 @@ MonoBehaviour:
     SideDefence: 0
     TopDefence: 0
     TorpedoDefence: 0
-    Contry: 3
+    Country: 3
     Accuracy: 42
     CriticalRate: 5
     CriticalDamage: 5
@@ -153,3 +159,4 @@ MonoBehaviour:
     ShellCnt: 100
     maxDamage: 1000
     ResourceName: TestEnemy
+    PassiveIds: 1,2,3

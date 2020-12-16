@@ -14,7 +14,9 @@ namespace Sinabro
 
         public virtual void ActivatePassive() { }
 
-        public virtual float GetPassiveValue(PassiveValueType valueType) { return resultValue_; }
+        public virtual float GetPassiveValue1() { return resultValue_; }
+        public virtual float GetPassiveValue2() { return resultValue_; }
+        public virtual float GetPassiveValue3() { return resultValue_; }
 
     }
 }

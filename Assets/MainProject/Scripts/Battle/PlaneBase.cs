@@ -14,5 +14,17 @@ namespace Sinabro
         {
             Destroy(this.gameObject);
         }
+
+        public virtual void ActivatePassive()
+        {
+            if (bPlayer_)
+            {
+                BattleControl.Instance.enemyShip_.ActivatePassiveByPlayerPlane(this);
+            }
+            else
+            {
+                BattleControl.Instance.playerShip_.ActivatePassiveByEnemyPlane(this);
+            }
+        }
     }
 }
