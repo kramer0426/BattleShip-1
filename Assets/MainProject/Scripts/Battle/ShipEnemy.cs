@@ -111,6 +111,20 @@ namespace Sinabro
                     shipState_ = ShipState.Battle;
                     currentShellCnt_ = (int)shipAbility_[(int)ShipAbility.ShellCnt];
 
+                    if (BattleControl.Instance.bPlayerShipReady_)
+                    {
+                        if (BattleControl.Instance.playerShip_.passiveInfo_.Type == (int)PassiveType.EnemyMaxHpDown)
+                        {
+                            if (BattleControl.Instance.playerShip_.battleShipData_.shipInfo_.Country != battleShipInfo_.Country)
+                            {
+                                shipAbility_[(int)ShipAbility.Hp] -= shipAbility_[(int)ShipAbility.Hp] * BattleControl.Instance.playerShip_.passiveInfo_.Value1 * 0.01f;
+
+                                BattleControl.Instance.battleUI_.UpdateEnemyHp((int)shipAbility_[(int)ShipAbility.Hp]);
+                            }
+                        }
+                    }
+
+
                     BattleControl.Instance.playerShip_.StartFire();
                     StartFire();
                 });
@@ -162,8 +176,23 @@ namespace Sinabro
 
             // make damage
             int formulaDamage = 0;
+            int accuracy = (int)BattleControl.Instance.playerShip_.shipAbility_[(int)ShipAbility.Accuracy];
+            // player passive
+            if (BattleControl.Instance.bPlayerShipReady_)
+            {
+                if (BattleControl.Instance.playerShip_.passiveInfo_ != null)
+                {
+                    if (BattleControl.Instance.playerShip_.passiveInfo_.Type == (int)PassiveType.CompleteAccuracy)
+                    {
+                        if ((int)BattleControl.Instance.playerShip_.passiveInfo_.Value1 >= Random.Range(0, 100))
+                        {
+                            accuracy = 100000000;   // make 100% accuracy
+                        }
+                    }
+                }
+            }
 
-            if ((int)BattleControl.Instance.playerShip_.shipAbility_[(int)ShipAbility.Accuracy] - (int)shipAbility_[(int)ShipAbility.AvoidRate] >= Random.Range(0, 99))
+            if (accuracy - (int)shipAbility_[(int)ShipAbility.AvoidRate] >= Random.Range(0, 99))
             {
                 if (type == DamageType.Line)
                 {
@@ -208,7 +237,27 @@ namespace Sinabro
                 shipState_ = ShipState.Die;
                 BattleControl.Instance.playerShip_.HoldFire();
                 BattleControl.Instance.DestroyEnemy();
-                DataMgr.Instance.myInfo_g.AddMyGold(battleShipInfo_.GainGold);
+
+                int gainGold = battleShipInfo_.GainGold;
+                if (BattleControl.Instance.bPlayerShipReady_)
+                {
+                    if (BattleControl.Instance.playerShip_.passiveInfo_ != null)
+                    {
+                        if (BattleControl.Instance.playerShip_.passiveInfo_.Type == (int)PassiveType.GainGoldUpIfEnemyDestroy)
+                        {
+                            gainGold += (int)((float)gainGold * BattleControl.Instance.playerShip_.passiveInfo_.Value1 * 0.01f);
+                        }
+                        else if (BattleControl.Instance.playerShip_.passiveInfo_.Type == (int)PassiveType.GainCashIfEnemyDestroy)
+                        {
+                            if ((int)BattleControl.Instance.playerShip_.passiveInfo_.Value1 >= Random.Range(0, 100))
+                            {
+                                DataMgr.Instance.myInfo_g.AddMyCash((int)BattleControl.Instance.playerShip_.passiveInfo_.Value2);
+                            }
+                        }
+                    }
+                }
+
+                DataMgr.Instance.myInfo_g.AddMyGold(gainGold);
 
                 Invoke("Die", 0.3f / BattleControl.Instance.battleTimeScale_);
             }
@@ -225,6 +274,14 @@ namespace Sinabro
         public void Die()
         {
             Destroy(this.gameObject);
+        }
+
+        //----------------------------------------------------------------------------------------
+        // DestroyPassiveEffect
+        //----------------------------------------------------------------------------------------
+        public void DestroyPassiveEffect()
+        {
+            Invoke("Die", 0.3f / BattleControl.Instance.battleTimeScale_);
         }
 
         //

@@ -106,9 +106,8 @@ public enum PassiveType
     EnemyAttackReflection = 39,
     AttackDownAndHpDownAndAllFleetAttackUp = 40,
     EnemyMaxHpDown = 41,
-    AllFleetChaneCountryToSameEnemey = 42,
-    FixedAvoidRate = 43,
-    MAX = 44
+    AllFleetChaneCountryToSameEnemy = 42,
+    MAX = 43
 }
 
 
