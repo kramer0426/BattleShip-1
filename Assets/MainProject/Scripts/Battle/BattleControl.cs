@@ -201,7 +201,7 @@ namespace Sinabro
                 Invoke("CreateEnemyShip", 1.0f / battleTimeScale_);
             }
 
-            playerShip_.ActivatePassiveByEnemyShip();
+            playerShip_.ActivatePassiveByDestroyEnemyShip();
 
             battleUI_.UpdateStageText();
         }

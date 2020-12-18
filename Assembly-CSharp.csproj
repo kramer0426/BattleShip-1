@@ -61,7 +61,6 @@
     <Compile Include="Assets\MainProject\Scripts\Common\Excel\ShipSkinDataExcel.cs" />
     <Compile Include="Assets\MainProject\Scripts\Battle\BattleControl.cs" />
     <Compile Include="Assets\Plugin\LeanTween\Framework\LTSeq.cs" />
-    <Compile Include="Assets\MainProject\Scripts\Battle\PassiveValue.cs" />
     <Compile Include="Assets\Plugin\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\MainProject\Scripts\Battle\PlaneBomb.cs" />
     <Compile Include="Assets\Plugin\LeanTween\Framework\LeanTest.cs" />
@@ -77,7 +76,6 @@
     <Compile Include="Assets\MainProject\Scripts\Common\Excel\BattleShipDataExcel.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\Excel\ItemDataExcel.cs" />
     <Compile Include="Assets\MainProject\Scripts\Battle\ShipPlayer.cs" />
-    <Compile Include="Assets\MainProject\Scripts\Battle\PassiveBase.cs" />
     <Compile Include="Assets\MainProject\Scripts\Effect\ShakeControl.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\DataMgr.cs" />
     <Compile Include="Assets\MainProject\Scripts\Common\Excel\PassiveSkillDataExcel.cs" />

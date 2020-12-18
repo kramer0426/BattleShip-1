@@ -49,9 +49,17 @@ namespace Sinabro
         }
 
         //
-        public void AddMyGold(int addmoney)
+        public void AddMyGold(int addMoney)
         {
-            myGold_ += addmoney;
+            myGold_ += addMoney;
+
+            DataMgr.Instance.SaveData();
+        }
+
+        //
+        public void AddMyCash(int addCash)
+        {
+            myCash_ += addCash;
 
             DataMgr.Instance.SaveData();
         }
@@ -208,6 +216,7 @@ namespace Sinabro
         public const int MAX_CHAPTER = 10;
         public const int MIN_ENEMY_SHIP_LIMITE = 2;
         public const int MAX_ITEM_SLOT = 5;
+        public const int MAX_PASSIVE_DESTROY_ENEMY = 10;
 
         //
         public const int DEFALUT_GOLD = 1000;
