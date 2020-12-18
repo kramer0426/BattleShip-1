@@ -200,6 +200,9 @@ namespace Sinabro
             if ((int)shipAbility_[(int)ShipAbility.Hp] < 1)
                 shipAbility_[(int)ShipAbility.Hp] = 1;
 
+            if ((int)shipAbility_[(int)ShipAbility.Ap] < 1)
+                shipAbility_[(int)ShipAbility.Ap] = 1;
+
             maxHp_ = (int)shipAbility_[(int)ShipAbility.Hp];
             if (passiveAp_ > 0)
                 shipAbility_[(int)ShipAbility.Ap] = passiveAp_;
@@ -346,71 +349,76 @@ namespace Sinabro
             // make damage
             int formulaDamage = 0;
 
-            if ((int)BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.Accuracy] - (int)shipAbility_[(int)ShipAbility.AvoidRate] >= Random.Range(0, 100))
+            if (BattleControl.Instance.bEnemyShipReady_)
             {
-                // default formula
-                if (type == DamageType.Line)
+                if ((int)BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.Accuracy] - (int)shipAbility_[(int)ShipAbility.AvoidRate] >= Random.Range(0, 100))
                 {
-                    formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.SideDp];
-                }
-                else if (type == DamageType.Curve)
-                {
-                    formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.TopDp];
-                }
-                else if (type == DamageType.Torpedo)
-                {
-                    formulaDamage = damage - (int)((float)damage * shipAbility_[(int)ShipAbility.TorpedoDp] * 0.01f);
-                }
-
-                // passive
-                if (passiveInfo_.Type == (int)PassiveType.DamageDownIfSameCountry)
-                {
-                    if (BattleControl.Instance.enemyShip_.battleShipInfo_.Country == battleShipData_.shipInfo_.Country)
+                    // default formula
+                    if (type == DamageType.Line)
                     {
-                        formulaDamage -= (int)((float)formulaDamage * passiveInfo_.Value1 * 0.01f);
+                        formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.SideDp];
                     }
-                }
-                else if (passiveInfo_.Type == (int)PassiveType.AttackUpAndMyDamageUp)
-                {
-                    formulaDamage += (int)((float)formulaDamage * passiveInfo_.Value1 * 0.01f);
-                }
-                else if (passiveInfo_.Type == (int)PassiveType.EnemyAttackReflection)
-                {
-                    if (BattleControl.Instance.bEnemyShipReady_)
+                    else if (type == DamageType.Curve)
+                    {
+                        formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.TopDp];
+                    }
+                    else if (type == DamageType.Torpedo)
+                    {
+                        formulaDamage = damage - (int)((float)damage * shipAbility_[(int)ShipAbility.TorpedoDp] * 0.01f);
+                    }
+
+                    // passive
+                    if (passiveInfo_.Type == (int)PassiveType.DamageDownIfSameCountry)
+                    {
+                        if (BattleControl.Instance.enemyShip_.battleShipInfo_.Country == battleShipData_.shipInfo_.Country)
+                        {
+                            formulaDamage -= (int)((float)formulaDamage * passiveInfo_.Value1 * 0.01f);
+                        }
+                    }
+                    else if (passiveInfo_.Type == (int)PassiveType.AttackUpAndMyDamageUp)
+                    {
+                        formulaDamage += (int)((float)formulaDamage * passiveInfo_.Value1 * 0.01f);
+                    }
+                    else if (passiveInfo_.Type == (int)PassiveType.EnemyAttackReflection)
                     {
                         BattleControl.Instance.enemyShip_.Damage((int)((float)formulaDamage * passiveInfo_.Value1 * 0.01f), type);
                     }
-                }
-                
 
-                // critical
-                if ((int)BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.CriticalRate] >= Random.Range(0, 100))
+
+                    // critical
+                    if ((int)BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.CriticalRate] >= Random.Range(0, 100))
+                    {
+                        Debug.Log("Critical to player");
+                        formulaDamage += (int)((float)formulaDamage * BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.CriticalDamage] * 0.01f);
+                    }
+
+                    // limite min damage
+                    if (formulaDamage <= 0)
+                        formulaDamage = 1;
+                }
+                else
                 {
-                    Debug.Log("Critical to player");
-                    formulaDamage += (int)((float)formulaDamage * BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.CriticalDamage] * 0.01f);
+                    // miss
                 }
 
-                // limite min damage
-                if (formulaDamage <= 0)
-                    formulaDamage = 1;
+                // passive
+                if (passiveInfo_.Type == (int)PassiveType.AvoidTorpedo)
+                {
+                    if ((int)passiveInfo_.Value1 >= Random.Range(0, 100))
+                        formulaDamage = 0;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.TorpedoAttackUpAndAvoidTorpedo)
+                {
+                    if ((int)passiveInfo_.Value2 >= Random.Range(0, 100))
+                        formulaDamage = 0;
+                }
             }
             else
             {
-                // miss
+                formulaDamage = 0;
             }
 
-            // passive
-            if (passiveInfo_.Type == (int)PassiveType.AvoidTorpedo)
-            {
-                if ((int)passiveInfo_.Value1 >= Random.Range(0, 100))
-                    formulaDamage = 0;
-            }
-            else if (passiveInfo_.Type == (int)PassiveType.TorpedoAttackUpAndAvoidTorpedo)
-            {
-                if ((int)passiveInfo_.Value2 >= Random.Range(0, 100))
-                    formulaDamage = 0;
-            }
-
+            //
             shipAbility_[(int)ShipAbility.Hp] -= formulaDamage;
             if (shipAbility_[(int)ShipAbility.Hp] <= 0)
                 shipAbility_[(int)ShipAbility.Hp] = 0;

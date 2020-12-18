@@ -36,7 +36,7 @@ namespace Sinabro
         //----------------------------------------------------------------------------------------
         public void SetBattleShip(BattleShipEnemyEntity battleShip, Vector3 startPos)
         {
-            //
+            // setting passive
             string[] values = null;
             values = battleShip.PassiveIds.Split(',');
             List<int> passiveIds = new List<int>();
@@ -47,8 +47,6 @@ namespace Sinabro
                     if (values[i].Length != 0) passiveIds.Add(int.Parse(values[i]));
                 }
             }
-
-            //
             passiveInfo_ = BattleControl.Instance.excelDatas_.GetPassiveSkill(passiveIds[Random.Range(0, passiveIds.Count)]);
 
 
@@ -58,7 +56,6 @@ namespace Sinabro
             transform.position = startPos;
 
             shipAbility_ = new float[(int)ShipAbility.MAX];
-
             shipAbility_[0] = battleShipInfo_.Hp;
             shipAbility_[1] = battleShipInfo_.BaseDamage;
             shipAbility_[2] = battleShipInfo_.Accuracy;
@@ -74,11 +71,10 @@ namespace Sinabro
 
             // add stage value
             int upgradeValue = BattleControl.Instance.excelDatas_.GetChapter(DataMgr.Instance.myInfo_g.currentChapter_).UpgradeValue;
-            for (int i = 0; i < 6; ++i)
-                shipAbility_[i] += upgradeValue;
+            shipAbility_[(int)ShipAbility.Hp] += upgradeValue;
+            shipAbility_[(int)ShipAbility.Ap] += upgradeValue;
 
-            shipAbility_[9] += upgradeValue;
-            shipAbility_[10] += upgradeValue;
+            // add passive
 
         }
 
