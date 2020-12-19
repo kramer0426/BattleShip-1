@@ -11,6 +11,8 @@ namespace Sinabro
         public Text enemyHpText_;
         public Text stageText_;
         public Text playerShellText_;
+        public Image PlayerHpBar_;
+        public Image enemyHpBar_;
 
         // Start is called before the first frame update
         void Start()
@@ -45,28 +47,44 @@ namespace Sinabro
         }
 
         //
-        public void UpdatePlayerHp(int hp)
+        public void SetPlayerInfo()
         {
-            playerHpText_.text = "Player HP : " + hp;
+
         }
 
         //
-        public void UpdateEnemyHp(int hp)
+        public void SetEnemyInfo()
         {
-            enemyHpText_.text = "Enemy HP : " + hp;
+
+        }
+
+        //
+        public void UpdatePlayerHp(int hp, int maxHp)
+        {
+            float percent = (float)hp / (float)maxHp * 100.0f;
+            playerHpText_.text = "" + (int)percent + "%";
+            PlayerHpBar_.fillAmount = percent;
+        }
+
+        //
+        public void UpdateEnemyHp(int hp, int maxHp)
+        {
+            float percent = (float)hp / (float)maxHp * 100.0f;
+            enemyHpText_.text = "" + (int)percent + "%";
+            enemyHpBar_.fillAmount = percent;
         }
 
         //
         public void UpdatePlayerShell(int Shell)
         {
-            if (Shell <= 0)
-            {
-                playerShellText_.text = "Shell : Reloading...";
-            }
-            else
-            {
-                playerShellText_.text = "Shell : " + Shell;
-            }
+            //if (Shell <= 0)
+            //{
+            //    playerShellText_.text = "Shell : Reloading...";
+            //}
+            //else
+            //{
+            //    playerShellText_.text = "Shell : " + Shell;
+            //}
             
         }
     }

@@ -206,6 +206,10 @@ namespace Sinabro
             maxHp_ = (int)shipAbility_[(int)ShipAbility.Hp];
             if (passiveAp_ > 0)
                 shipAbility_[(int)ShipAbility.Ap] = passiveAp_;
+
+            //
+            BattleControl.Instance.battleUI_.UpdatePlayerHp((int)shipAbility_[(int)ShipAbility.Hp], maxHp_);
+            BattleControl.Instance.battleUI_.UpdatePlayerShell(currentShellCnt_);
         }
 
         //----------------------------------------------------------------------------------------
@@ -423,7 +427,7 @@ namespace Sinabro
             if (shipAbility_[(int)ShipAbility.Hp] <= 0)
                 shipAbility_[(int)ShipAbility.Hp] = 0;
 
-            BattleControl.Instance.battleUI_.UpdatePlayerHp((int)shipAbility_[(int)ShipAbility.Hp]);
+            BattleControl.Instance.battleUI_.UpdatePlayerHp((int)shipAbility_[(int)ShipAbility.Hp], maxHp_);
             BattleControl.Instance.CreateDamageEffect(this.gameObject.transform.position, formulaDamage);
 
             if (shipAbility_[(int)ShipAbility.Hp] <= 0)
@@ -464,7 +468,7 @@ namespace Sinabro
 
                         shipAbility_[(int)ShipAbility.Hp] = maxHp_;
 
-                        BattleControl.Instance.battleUI_.UpdatePlayerHp((int)shipAbility_[(int)ShipAbility.Hp]);
+                        BattleControl.Instance.battleUI_.UpdatePlayerHp((int)shipAbility_[(int)ShipAbility.Hp], maxHp_);
                         return;
                     }
                 }
@@ -520,7 +524,7 @@ namespace Sinabro
                                 if (maxHp_ < shipAbility_[(int)ShipAbility.Hp])
                                     shipAbility_[(int)ShipAbility.Hp] = maxHp_;
 
-                                BattleControl.Instance.battleUI_.UpdatePlayerHp((int)shipAbility_[(int)ShipAbility.Hp]);
+                                BattleControl.Instance.battleUI_.UpdatePlayerHp((int)shipAbility_[(int)ShipAbility.Hp], maxHp_);
                             }
                         }
                     }

@@ -86,7 +86,7 @@ namespace Sinabro
             MyShipData shipData = new MyShipData();
             shipData.shipId_ = 0;
             shipData.shipInfo_ = excelDatas_.GetBattleShip(shipData.shipId_);
-            shipData.passiveId_ = 0;
+            shipData.passiveId_ = 1;
             DataMgr.Instance.myInfo_g.myShipDataList_.Add(shipData);
             //--------------------------------------------------------------------------
 
@@ -122,9 +122,6 @@ namespace Sinabro
                     bPlayerShipReady_ = true;
                 }
             }
-
-            battleUI_.UpdatePlayerHp((int)playerShip_.shipAbility_[(int)ShipAbility.Hp]);
-            battleUI_.UpdatePlayerShell(playerShip_.currentShellCnt_);
         }
 
         //---------------------------------------------------------------------------------
@@ -177,8 +174,6 @@ namespace Sinabro
                     bEnemyShipReady_ = true;
                 }
             }
-
-            battleUI_.UpdateEnemyHp((int)enemyShip_.shipAbility_[(int)ShipAbility.Hp]);
         }
 
         //---------------------------------------------------------------------------------
@@ -243,8 +238,6 @@ namespace Sinabro
             playerShip_.Move();
 
             bPlayerShipReady_ = true;
-
-            battleUI_.UpdatePlayerHp((int)playerShip_.shipAbility_[(int)ShipAbility.Hp]);
 
             CreateEnemyShip();
         }

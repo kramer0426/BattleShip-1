@@ -11,7 +11,7 @@ namespace Sinabro
         private Vector3 outPathPoint1 = new Vector3(0, 0, 0);
         private Vector3 outPathPoint2 = new Vector3(0, 0, 0);
         private Vector3 startPos = new Vector3(0, 0, 0);
-        private Vector3 targetPos = new Vector3(0, 0, 0);
+        private Vector3 targetPos = new Vector3(0, 2.5f, 0);
         private Vector3 torpedoStartPos = new Vector3(0, 0, 0);
         private Vector3 torpedoTargetPos = new Vector3(0, 0, 0);
 
@@ -36,7 +36,6 @@ namespace Sinabro
             if (bPlayer_)
             {
                 startPos = BattleControl.Instance.playerPlaneStartPos_.transform.position;
-                targetPos = Vector3.zero;
                 targetPos.x += 0.5f;
                 pathPoint1 = pathPoint2 = startPos;
                 pathPoint1.x += (targetPos.x - startPos.x) * 0.33f;
@@ -47,7 +46,6 @@ namespace Sinabro
             else
             {
                 startPos = BattleControl.Instance.enemyPlaneStartPos_.transform.position;
-                targetPos = Vector3.zero;
                 targetPos.x -= 0.5f;
                 pathPoint1 = pathPoint2 = startPos;
                 pathPoint1.x -= (startPos.x - targetPos.x) * 0.33f;

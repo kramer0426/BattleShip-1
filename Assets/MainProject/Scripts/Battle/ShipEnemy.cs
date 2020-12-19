@@ -19,6 +19,7 @@ namespace Sinabro
 
         //
         public int currentShellCnt_ = 0;
+        public int maxHp_;
         public float[] shipAbility_ = new float[(int)ShipAbility.MAX];
         public PassiveSkillEntity passiveInfo_ = null;
 
@@ -29,6 +30,13 @@ namespace Sinabro
             {
 
             }
+        }
+
+        //
+        private void Awake()
+        {
+            currentShellCnt_ = 0;
+            maxHp_ = 0;
         }
 
         //----------------------------------------------------------------------------------------
@@ -76,6 +84,11 @@ namespace Sinabro
 
             // add passive
 
+
+            //
+            maxHp_ = (int)shipAbility_[(int)ShipAbility.Hp];
+
+            BattleControl.Instance.battleUI_.UpdateEnemyHp((int)shipAbility_[(int)ShipAbility.Hp], maxHp_);
         }
 
         //----------------------------------------------------------------------------------------
@@ -109,17 +122,19 @@ namespace Sinabro
 
                     if (BattleControl.Instance.bPlayerShipReady_)
                     {
-                        if (BattleControl.Instance.playerShip_.passiveInfo_.Type == (int)PassiveType.EnemyMaxHpDown)
+                        if (BattleControl.Instance.playerShip_.passiveInfo_ != null)
                         {
-                            if (BattleControl.Instance.playerShip_.battleShipData_.shipInfo_.Country != battleShipInfo_.Country)
+                            if (BattleControl.Instance.playerShip_.passiveInfo_.Type == (int)PassiveType.EnemyMaxHpDown)
                             {
-                                shipAbility_[(int)ShipAbility.Hp] -= shipAbility_[(int)ShipAbility.Hp] * BattleControl.Instance.playerShip_.passiveInfo_.Value1 * 0.01f;
+                                if (BattleControl.Instance.playerShip_.battleShipData_.shipInfo_.Country != battleShipInfo_.Country)
+                                {
+                                    shipAbility_[(int)ShipAbility.Hp] -= shipAbility_[(int)ShipAbility.Hp] * BattleControl.Instance.playerShip_.passiveInfo_.Value1 * 0.01f;
 
-                                BattleControl.Instance.battleUI_.UpdateEnemyHp((int)shipAbility_[(int)ShipAbility.Hp]);
+                                    BattleControl.Instance.battleUI_.UpdateEnemyHp((int)shipAbility_[(int)ShipAbility.Hp], maxHp_);
+                                }
                             }
                         }
                     }
-
 
                     BattleControl.Instance.playerShip_.StartFire();
                     StartFire();
@@ -225,7 +240,7 @@ namespace Sinabro
             if (shipAbility_[(int)ShipAbility.Hp] <= 0)
                 shipAbility_[(int)ShipAbility.Hp] = 0;
 
-            BattleControl.Instance.battleUI_.UpdateEnemyHp((int)shipAbility_[(int)ShipAbility.Hp]);
+            BattleControl.Instance.battleUI_.UpdateEnemyHp((int)shipAbility_[(int)ShipAbility.Hp], maxHp_);
             BattleControl.Instance.CreateDamageEffect(this.gameObject.transform.position, formulaDamage);
 
             if (shipAbility_[(int)ShipAbility.Hp] <= 0)
