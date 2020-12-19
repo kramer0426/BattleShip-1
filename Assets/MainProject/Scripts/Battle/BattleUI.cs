@@ -61,16 +61,16 @@ namespace Sinabro
         //
         public void UpdatePlayerHp(int hp, int maxHp)
         {
-            float percent = (float)hp / (float)maxHp * 100.0f;
-            playerHpText_.text = "" + (int)percent + "%";
+            float percent = (float)hp / (float)maxHp;
+            playerHpText_.text = "" + (int)(percent * 100.0f) + "%";
             PlayerHpBar_.fillAmount = percent;
         }
 
         //
         public void UpdateEnemyHp(int hp, int maxHp)
         {
-            float percent = (float)hp / (float)maxHp * 100.0f;
-            enemyHpText_.text = "" + (int)percent + "%";
+            float percent = (float)hp / (float)maxHp;
+            enemyHpText_.text = "" + (int)(percent * 100.0f) + "%";
             enemyHpBar_.fillAmount = percent;
         }
 

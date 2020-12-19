@@ -110,7 +110,15 @@ public enum PassiveType
     MAX = 43
 }
 
-
+public enum MenuState
+{
+    Ship = 0,
+    Weapon = 1,
+    Support = 2,
+    Soldier = 3,
+    Item = 4,
+    Shop = 5
+}
 
 
 //

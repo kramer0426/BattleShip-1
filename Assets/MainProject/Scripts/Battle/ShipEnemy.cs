@@ -12,16 +12,21 @@ namespace Sinabro
         public ShakeControl             shakeControl_;
         public GameObject               bulletObject_;
         public GameObject[]             guns_;
+        public DamageType               attackType_ = 0;
 
         //
         private Vector3 bulletTargetPos_ = new Vector3(0, 0, 0);
         private Coroutine fireCoroutine = null;
+        private Coroutine planeCoroutine = null;
 
         //
         public int currentShellCnt_ = 0;
         public int maxHp_;
+        public int passiveAp_;
+        public int destroyEnemyCnt_;
         public float[] shipAbility_ = new float[(int)ShipAbility.MAX];
         public PassiveSkillEntity passiveInfo_ = null;
+        private bool bUsedResurrection_ = false;
 
         //
         private void FixedUpdate()
@@ -37,6 +42,8 @@ namespace Sinabro
         {
             currentShellCnt_ = 0;
             maxHp_ = 0;
+            passiveAp_ = 0;
+            destroyEnemyCnt_ = 0;
         }
 
         //----------------------------------------------------------------------------------------
@@ -44,6 +51,8 @@ namespace Sinabro
         //----------------------------------------------------------------------------------------
         public void SetBattleShip(BattleShipEnemyEntity battleShip, Vector3 startPos)
         {
+            bUsedResurrection_ = false;
+
             // setting passive
             string[] values = null;
             values = battleShip.PassiveIds.Split(',');
@@ -82,11 +91,133 @@ namespace Sinabro
             shipAbility_[(int)ShipAbility.Hp] += upgradeValue;
             shipAbility_[(int)ShipAbility.Ap] += upgradeValue;
 
-            // add passive
+            // add passive value
+            if (passiveInfo_ != null)
+            {
+                if (passiveInfo_.Type == (int)PassiveType.DefenseUp)
+                {
+                    shipAbility_[(int)ShipAbility.SideDp] += shipAbility_[(int)ShipAbility.SideDp] * passiveInfo_.Value1 * 0.01f;
+                    shipAbility_[(int)ShipAbility.TopDp] += shipAbility_[(int)ShipAbility.TopDp] * passiveInfo_.Value1 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.AttackUp || passiveInfo_.Type == (int)PassiveType.AttackUpAndMyDamageUp)
+                {
+                    shipAbility_[(int)ShipAbility.Ap] += shipAbility_[(int)ShipAbility.Ap] * passiveInfo_.Value1 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.CriticalRateUp)
+                {
+                    shipAbility_[(int)ShipAbility.CriticalRate] += shipAbility_[(int)ShipAbility.CriticalRate] * passiveInfo_.Value1 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.TorpedoDamageDown)
+                {
+                    shipAbility_[(int)ShipAbility.TorpedoDp] += passiveInfo_.Value1;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.ReloadDown)
+                {
+                    shipAbility_[(int)ShipAbility.ReloadTime] -= shipAbility_[(int)ShipAbility.ReloadTime] * passiveInfo_.Value1 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.AccuracyUp)
+                {
+                    shipAbility_[(int)ShipAbility.Accuracy] += shipAbility_[(int)ShipAbility.Accuracy] * passiveInfo_.Value1 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.HpUp)
+                {
+                    shipAbility_[(int)ShipAbility.Hp] += shipAbility_[(int)ShipAbility.Hp] * passiveInfo_.Value1 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.AllDamageDownAndAttackDown)
+                {
+                    shipAbility_[(int)ShipAbility.SideDp] += shipAbility_[(int)ShipAbility.SideDp] * passiveInfo_.Value1 * 0.01f;
+                    shipAbility_[(int)ShipAbility.TopDp] += shipAbility_[(int)ShipAbility.TopDp] * passiveInfo_.Value1 * 0.01f;
+                    shipAbility_[(int)ShipAbility.TorpedoDp] += passiveInfo_.Value1;
 
+                    shipAbility_[(int)ShipAbility.Ap] -= shipAbility_[(int)ShipAbility.Ap] * passiveInfo_.Value2 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.AvoidRateUp)
+                {
+                    shipAbility_[(int)ShipAbility.AvoidRate] += passiveInfo_.Value1;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.MaxShellUp)
+                {
+                    shipAbility_[(int)ShipAbility.ShellCnt] += shipAbility_[(int)ShipAbility.ShellCnt] * passiveInfo_.Value1 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.CriticalDamageUp)
+                {
+                    shipAbility_[(int)ShipAbility.CriticalDamage] += shipAbility_[(int)ShipAbility.CriticalDamage] * passiveInfo_.Value1 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.PlaneSupport)
+                {
+                    StartPlane();
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.DefenseUpAndAvoidUp)
+                {
+                    shipAbility_[(int)ShipAbility.SideDp] += shipAbility_[(int)ShipAbility.SideDp] * passiveInfo_.Value1 * 0.01f;
+                    shipAbility_[(int)ShipAbility.TopDp] += shipAbility_[(int)ShipAbility.TopDp] * passiveInfo_.Value1 * 0.01f;
+                    shipAbility_[(int)ShipAbility.AvoidRate] += passiveInfo_.Value2;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.AttackUpAndAccuracyUp)
+                {
+                    shipAbility_[(int)ShipAbility.Ap] += shipAbility_[(int)ShipAbility.Ap] * passiveInfo_.Value1 * 0.01f;
+                    shipAbility_[(int)ShipAbility.Accuracy] += shipAbility_[(int)ShipAbility.Accuracy] * passiveInfo_.Value2 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.CriticalRateUpAndCriticalDamageUp)
+                {
+                    shipAbility_[(int)ShipAbility.CriticalRate] += shipAbility_[(int)ShipAbility.CriticalRate] * passiveInfo_.Value1 * 0.01f;
+                    shipAbility_[(int)ShipAbility.CriticalDamage] += shipAbility_[(int)ShipAbility.CriticalDamage] * passiveInfo_.Value2 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.MaxShellUpAndReloadDown)
+                {
+                    shipAbility_[(int)ShipAbility.ShellCnt] += shipAbility_[(int)ShipAbility.ShellCnt] * passiveInfo_.Value1 * 0.01f;
+                    shipAbility_[(int)ShipAbility.ReloadTime] -= shipAbility_[(int)ShipAbility.ReloadTime] * passiveInfo_.Value2 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.MaxShellUpAndReloadDown)
+                {
+                    shipAbility_[(int)ShipAbility.ShellCnt] += shipAbility_[(int)ShipAbility.ShellCnt] * passiveInfo_.Value1 * 0.01f;
+                    shipAbility_[(int)ShipAbility.ReloadTime] -= shipAbility_[(int)ShipAbility.ReloadTime] * passiveInfo_.Value2 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.AllFleetHpUp)
+                {
+                    // to do : all fleet Hp Up
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.AllFleetAttackUp)
+                {
+                    // to do : all fleet Attack Up
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.AttackUpAndHpUp)
+                {
+                    shipAbility_[(int)ShipAbility.Ap] += shipAbility_[(int)ShipAbility.Ap] * passiveInfo_.Value1 * 0.01f;
+                    shipAbility_[(int)ShipAbility.Hp] += shipAbility_[(int)ShipAbility.Hp] * passiveInfo_.Value2 * 0.01f;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.AllFleetAvoidUp)
+                {
+                    // to do : all fleet avoid Up
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.AttackDownAndHpDownAndAllFleetAttackUp)
+                {
+                    shipAbility_[(int)ShipAbility.Ap] -= shipAbility_[(int)ShipAbility.Ap] * passiveInfo_.Value1 * 0.01f;
+                    shipAbility_[(int)ShipAbility.Hp] -= shipAbility_[(int)ShipAbility.Hp] * passiveInfo_.Value2 * 0.01f;
+
+                    // to do : all fleet attack Up
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.AllFleetChaneCountryToSameEnemy)
+                {
+                    // to do : all fleet change county to same enemey
+                }
+
+
+                //
+                if (shipAbility_[(int)ShipAbility.ReloadTime] < 0.1f)
+                    shipAbility_[(int)ShipAbility.ReloadTime] = 0.1f;
+            }
 
             //
+            if ((int)shipAbility_[(int)ShipAbility.Hp] < 1)
+                shipAbility_[(int)ShipAbility.Hp] = 1;
+
+            if ((int)shipAbility_[(int)ShipAbility.Ap] < 1)
+                shipAbility_[(int)ShipAbility.Ap] = 1;
+
             maxHp_ = (int)shipAbility_[(int)ShipAbility.Hp];
+            if (passiveAp_ > 0)
+                shipAbility_[(int)ShipAbility.Ap] = passiveAp_;
 
             BattleControl.Instance.battleUI_.UpdateEnemyHp((int)shipAbility_[(int)ShipAbility.Hp], maxHp_);
         }
@@ -100,11 +231,20 @@ namespace Sinabro
         }
 
         //----------------------------------------------------------------------------------------
-        // ActivatePassiveByEnemyPlane
+        // ActivatePassiveByPlayerPlane
         //----------------------------------------------------------------------------------------
         public void ActivatePassiveByPlayerPlane(PlaneBase targetPlane)
         {
-
+            if (passiveInfo_ != null)
+            {
+                if (passiveInfo_.Type == (int)PassiveType.PlaneShootingDownRate)
+                {
+                    if ((int)passiveInfo_.Value1 >= Random.Range(0, 100))
+                    {
+                        targetPlane.Die();
+                    }
+                }
+            }
         }
 
         //----------------------------------------------------------------------------------------
@@ -129,7 +269,7 @@ namespace Sinabro
                                 if (BattleControl.Instance.playerShip_.battleShipData_.shipInfo_.Country != battleShipInfo_.Country)
                                 {
                                     shipAbility_[(int)ShipAbility.Hp] -= shipAbility_[(int)ShipAbility.Hp] * BattleControl.Instance.playerShip_.passiveInfo_.Value1 * 0.01f;
-
+                                    maxHp_ = (int)shipAbility_[(int)ShipAbility.Hp];
                                     BattleControl.Instance.battleUI_.UpdateEnemyHp((int)shipAbility_[(int)ShipAbility.Hp], maxHp_);
                                 }
                             }
@@ -178,6 +318,30 @@ namespace Sinabro
         }
 
         //----------------------------------------------------------------------------------------
+        // StartPlane
+        //----------------------------------------------------------------------------------------
+        public void StartPlane()
+        {
+            if (planeCoroutine != null)
+            {
+                StopCoroutine(planeCoroutine);
+            }
+
+            planeCoroutine = StartCoroutine(CoroutineCallPlane());
+        }
+
+        //----------------------------------------------------------------------------------------
+        // HoldPlane
+        //----------------------------------------------------------------------------------------
+        public void HoldPlane()
+        {
+            if (planeCoroutine != null)
+            {
+                StopCoroutine(planeCoroutine);
+            }
+        }
+
+        //----------------------------------------------------------------------------------------
         // Damage
         //----------------------------------------------------------------------------------------
         public void Damage(int damage, DamageType type)
@@ -187,7 +351,10 @@ namespace Sinabro
 
             // make damage
             int formulaDamage = 0;
-            int accuracy = (int)BattleControl.Instance.playerShip_.shipAbility_[(int)ShipAbility.Accuracy];
+            int accuracy = 0;
+            if (BattleControl.Instance.bPlayerShipReady_)
+                accuracy = (int)BattleControl.Instance.playerShip_.shipAbility_[(int)ShipAbility.Accuracy];
+
             // player passive
             if (BattleControl.Instance.bPlayerShipReady_)
             {
@@ -203,37 +370,69 @@ namespace Sinabro
                 }
             }
 
-            if (accuracy - (int)shipAbility_[(int)ShipAbility.AvoidRate] >= Random.Range(0, 99))
+            if (BattleControl.Instance.bPlayerShipReady_)
             {
-                if (type == DamageType.Line)
+                if (accuracy - (int)shipAbility_[(int)ShipAbility.AvoidRate] >= Random.Range(0, 100))
                 {
-                    formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.SideDp];
+                    if (type == DamageType.Line)
+                    {
+                        formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.SideDp];
+                    }
+                    else if (type == DamageType.Curve)
+                    {
+                        formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.TopDp];
+                    }
+                    else if (type == DamageType.Torpedo)
+                    {
+                        formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.TorpedoDp];
+                    }
+
+                    // passive
+                    if (passiveInfo_.Type == (int)PassiveType.DamageDownIfSameCountry)
+                    {
+                        if (BattleControl.Instance.playerShip_.battleShipData_.shipInfo_.Country == battleShipInfo_.Country)
+                        {
+                            formulaDamage -= (int)((float)formulaDamage * passiveInfo_.Value1 * 0.01f);
+                        }
+                    }
+                    else if (passiveInfo_.Type == (int)PassiveType.AttackUpAndMyDamageUp)
+                    {
+                        formulaDamage += (int)((float)formulaDamage * passiveInfo_.Value1 * 0.01f);
+                    }
+                    else if (passiveInfo_.Type == (int)PassiveType.EnemyAttackReflection)
+                    {
+                        BattleControl.Instance.playerShip_.Damage((int)((float)formulaDamage * passiveInfo_.Value1 * 0.01f), type);
+                    }
+
+                    // critical
+                    if ((int)BattleControl.Instance.playerShip_.shipAbility_[(int)ShipAbility.CriticalRate] >= Random.Range(0, 100))
+                    {
+                        Debug.Log("Critical to enemy");
+                        formulaDamage += (int)((float)formulaDamage * BattleControl.Instance.playerShip_.shipAbility_[(int)ShipAbility.CriticalDamage] * 0.01f);
+                    }
+
+                    // limite min damage
+                    if (formulaDamage <= 0)
+                        formulaDamage = 1;
                 }
-                else if (type == DamageType.Curve)
+                else
                 {
-                    formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.TopDp];
-                }
-                else if (type == DamageType.Torpedo)
-                {
-                    formulaDamage = damage - (int)shipAbility_[(int)ShipAbility.TorpedoDp];
+                    // miss
                 }
 
-                // critical
-                if ((int)BattleControl.Instance.playerShip_.shipAbility_[(int)ShipAbility.CriticalRate] >= Random.Range(0, 99))
+                // passive
+                if (passiveInfo_.Type == (int)PassiveType.AvoidTorpedo)
                 {
-                    Debug.Log("Critical to enemy");
-                    formulaDamage += (int)((float)formulaDamage * BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.CriticalDamage] * 0.01f);
+                    if ((int)passiveInfo_.Value1 >= Random.Range(0, 100))
+                        formulaDamage = 0;
+                }
+                else if (passiveInfo_.Type == (int)PassiveType.TorpedoAttackUpAndAvoidTorpedo)
+                {
+                    if ((int)passiveInfo_.Value2 >= Random.Range(0, 100))
+                        formulaDamage = 0;
                 }
 
-                // limite min damage
-                if (formulaDamage <= 0)
-                    formulaDamage = 1;
             }
-            else
-            {
-                // miss
-            }
-
 
 
             shipAbility_[(int)ShipAbility.Hp] -= formulaDamage;
@@ -349,7 +548,34 @@ namespace Sinabro
                         bulletTargetPos_.x = BattleControl.Instance.playerShip_.transform.position.x + Random.Range(-0.1f, 0.1f);
                         bulletTargetPos_.y = guns_[guns_.Length - fireCnt].transform.position.y;
 
-                        bullet.Shoot(false, (int)shipAbility_[(int)ShipAbility.Ap], bulletTargetPos_);
+                        int ap = (int)shipAbility_[(int)ShipAbility.Ap];
+
+                        if (passiveInfo_ != null)
+                        {
+                            if (passiveInfo_.Type == (int)PassiveType.AttackUpIfOtherCountry)
+                            {
+                                if (battleShipInfo_.Country != BattleControl.Instance.playerShip_.battleShipData_.shipInfo_.Country)
+                                {
+                                    ap += (int)((float)ap * passiveInfo_.Value1 * 0.01f);
+                                }
+                            }
+                            else if (passiveInfo_.Type == (int)PassiveType.AttackUpIfMyHighDefenseThenEnemyDefense)
+                            {
+                                if (shipAbility_[(int)ShipAbility.SideDp] > BattleControl.Instance.playerShip_.shipAbility_[(int)ShipAbility.SideDp])
+                                {
+                                    ap += (int)((float)ap * passiveInfo_.Value1 * 0.01f);
+                                }
+                            }
+                            else if (passiveInfo_.Type == (int)PassiveType.TorpedoAttackUpAndAvoidTorpedo)
+                            {
+                                if (attackType_ == DamageType.Torpedo)
+                                {
+                                    ap += (int)((float)ap * passiveInfo_.Value1 * 0.01f);
+                                }
+                            }
+                        }
+
+                        bullet.Shoot(false, ap, bulletTargetPos_);
                     }
                 }
                 else
@@ -365,7 +591,49 @@ namespace Sinabro
                 fireCnt--;
                 currentShellCnt_--;
 
+                if (fireCnt <= 0)
+                {
+                    if (passiveInfo_ != null)
+                    {
+                        if (passiveInfo_.Type == (int)PassiveType.ContinueAttack)
+                        {
+                            if ((int)passiveInfo_.Value1 >= Random.Range(0, 100))
+                            {
+                                fireCnt = guns_.Length;
+                            }
+                        }
+                    }
+                }
+
                 yield return new WaitForSeconds(0.1f / BattleControl.Instance.battleTimeScale_);
+            }
+        }
+
+        //
+        IEnumerator CoroutineCallPlane()
+        {
+            while (true)
+            {
+                if (passiveInfo_ != null)
+                {
+                    if (passiveInfo_.Type == (int)PassiveType.PlaneSupport)
+                    {
+                        yield return new WaitForSeconds(passiveInfo_.Value1 / BattleControl.Instance.battleTimeScale_);
+                    }
+                }
+                else
+                {
+                    yield return null;
+
+                }
+
+                if (passiveInfo_ != null)
+                {
+                    if (passiveInfo_.Type == (int)PassiveType.PlaneSupport)
+                    {
+                        BattleControl.Instance.CallPlayerPlaneSupport(false, (int)shipAbility_[(int)ShipAbility.Ap]);
+                    }
+                }
             }
         }
     }

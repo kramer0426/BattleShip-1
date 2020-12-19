@@ -34,6 +34,8 @@ namespace Sinabro
             myGold_ = DataMgr.DEFALUT_GOLD;
             myCash_ = 0;
             currentChapter_ = 0;
+
+
         }
 
         //
@@ -132,6 +134,9 @@ namespace Sinabro
         //
         public Dictionary<int, string> g_localizeTextTable = new Dictionary<int, string>();
 
+        //
+        public LocalTextExcel g_localTextExcel;
+        public BattleShipDataExcel g_battleShipExcel;
 
         //
         public MyInfo myInfo_g = new MyInfo();
@@ -139,6 +144,7 @@ namespace Sinabro
 
         //
         public int loadingImgIndex_g = 1;
+        public int currentLanguage_g = 1;
 
 
         // for string
@@ -158,6 +164,43 @@ namespace Sinabro
             }
 
             return "none";
+        }
+
+        public string GetLocalExcelText(int textId)
+        {
+            for (int i = 0; i < g_localTextExcel.Sheet1.Count; ++i)
+            {
+                if (g_localTextExcel.Sheet1[i].Id == textId)
+                {
+                    if (currentLanguage_g == (int)LanguageType.Korean)
+                    {
+                        return g_localTextExcel.Sheet1[i].krString;
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+            }
+
+            return "none";
+        }
+
+        //-----------------------------------------------------------------------------------------------------
+        // GetBattleShip
+        //
+        public BattleShipEntity GetBattleShip(int id)
+        {
+            for (int i = 0; i < g_battleShipExcel.Sheet1.Count; ++i)
+            {
+                if (g_battleShipExcel.Sheet1[i].Id == id)
+                {
+                    return g_battleShipExcel.Sheet1[i];
+                }
+            }
+
+            return null;
         }
 
 
@@ -210,6 +253,8 @@ namespace Sinabro
 
         public const int TEXT_CONFIRM = 100;
         public const int TEXT_CANCEL = 101;
+
+        public const int TEXT_MAIN_MENU_1 = 201;
 
         //
         public const int BOSS_CHAPTER = 9;

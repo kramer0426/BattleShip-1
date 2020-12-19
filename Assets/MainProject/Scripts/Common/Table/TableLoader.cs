@@ -9,6 +9,8 @@ namespace Sinabro
 
     public class TableLoader : MonoBehaviour
     {
+        [SerializeField] LocalTextExcel localTextExcel_;
+        [SerializeField] BattleShipDataExcel battleShipDataExcel_;
 
         void Start()
         {
@@ -18,6 +20,10 @@ namespace Sinabro
         //
         public void LoadData()
         {
+            //
+            DataMgr.Instance.g_localTextExcel = localTextExcel_;
+            DataMgr.Instance.g_battleShipExcel = battleShipDataExcel_;
+
             //
             int language = PlayerPrefs.GetInt("Lanuage", -1);
             if (language == -1)
@@ -53,8 +59,11 @@ namespace Sinabro
 
             }
 
-            LoadLocalTable(language);
+            // test code
+            language = (int)LanguageType.Korean;
 
+            // english = 0
+            DataMgr.Instance.currentLanguage_g = language;
 
             //----------------------------------------------------------------------------------------------
             // sound table Load
@@ -78,59 +87,5 @@ namespace Sinabro
         }
 
 
-        //
-        public void ChangeLocalize(int nationCode)
-        {
-            PlayerPrefs.SetInt("Lanuage", nationCode);
-
-            // english = 0
-            LoadLocalTable(nationCode);
-        }
-
-        //
-        private void LoadLocalTable(int nationCode)
-        {
-            //
-            int dataCnt = 0;
-
-            DataMgr.Instance.g_localizeTextTable.Clear();
-            LocalizeTextTable localizeText;
-            localizeText = GetComponent<LocalizeTextTable>();
-            localizeText.LoadData("Table/LocalizeTextTable");
-            dataCnt = localizeText.GetDataSize();
-            LocalizeTextTable.DataEntity localizeTextDatas = localizeText.GetData();
-
-            int textId;
-            string strText;
-            for (int i = 0; i < dataCnt; ++i)
-            {
-                textId = localizeTextDatas.Texts[i].Id;
-                if (nationCode == (int)LanguageType.Korean)
-                {
-                    strText = localizeTextDatas.Texts[i].KrString;
-                    DataMgr.Instance.g_localizeTextTable.Add(textId, strText);
-                }
-                else if (nationCode == (int)LanguageType.English)
-                {
-                    strText = localizeTextDatas.Texts[i].EngString;
-                    DataMgr.Instance.g_localizeTextTable.Add(textId, strText);
-                }
-                else if (nationCode == (int)LanguageType.Japanese)
-                {
-                    strText = localizeTextDatas.Texts[i].JpString;
-                    DataMgr.Instance.g_localizeTextTable.Add(textId, strText);
-                }
-                else if (nationCode == (int)LanguageType.Cn)
-                {
-                    strText = localizeTextDatas.Texts[i].CnString;
-                    DataMgr.Instance.g_localizeTextTable.Add(textId, strText);
-                }
-                else if (nationCode == (int)LanguageType.Tw)
-                {
-                    strText = localizeTextDatas.Texts[i].TwString;
-                    DataMgr.Instance.g_localizeTextTable.Add(textId, strText);
-                }
-            }
-        }
     }
 }

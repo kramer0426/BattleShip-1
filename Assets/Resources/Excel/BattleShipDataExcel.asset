@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: BattleShipDataExcel
   m_EditorClassIdentifier: 
   Sheet1:
-  - Id: 0
-    Rank: 1
-    NameCode: Ship001
-    BackgroundDescriptionCode: ShipDescription001
+  - Id: 1
+    Rank: 0
+    ShipClass: AP
+    NameCode: 20000
+    BackgroundDescriptionCode: 21000
+    SignitureLocalCode: 22000
     BasePrice: 200
     SpecialPrice: 0
     PriceIncrement: 2
@@ -30,15 +32,18 @@ MonoBehaviour:
     Accuracy: 30
     CriticalRate: 5
     CriticalDamage: 5
+    GunCount: 1
     FireTime: 2
     ReloadTime: 5
     ShellCnt: 100
     maxDamage: 100
     ResourceName: TestPlayer
-  - Id: 1
-    Rank: 2
-    NameCode: Ship002
-    BackgroundDescriptionCode: ShipDescription002
+  - Id: 2
+    Rank: 1
+    ShipClass: DD
+    NameCode: 0
+    BackgroundDescriptionCode: 0
+    SignitureLocalCode: 0
     BasePrice: 1000
     SpecialPrice: 0
     PriceIncrement: 3
@@ -52,15 +57,18 @@ MonoBehaviour:
     Accuracy: 32
     CriticalRate: 5
     CriticalDamage: 5
+    GunCount: 4
     FireTime: 2
     ReloadTime: 5
     ShellCnt: 100
     maxDamage: 200
     ResourceName: TestPlayer
-  - Id: 2
-    Rank: 3
-    NameCode: Ship003
-    BackgroundDescriptionCode: ShipDescription003
+  - Id: 3
+    Rank: 2
+    ShipClass: CL
+    NameCode: 0
+    BackgroundDescriptionCode: 0
+    SignitureLocalCode: 0
     BasePrice: 3000
     SpecialPrice: 0
     PriceIncrement: 5
@@ -74,15 +82,18 @@ MonoBehaviour:
     Accuracy: 34
     CriticalRate: 5
     CriticalDamage: 5
+    GunCount: 4
     FireTime: 2
     ReloadTime: 5
     ShellCnt: 100
     maxDamage: 400
     ResourceName: TestPlayer
-  - Id: 3
-    Rank: 4
-    NameCode: Ship004
-    BackgroundDescriptionCode: ShipDescription004
+  - Id: 4
+    Rank: 3
+    ShipClass: CA
+    NameCode: 0
+    BackgroundDescriptionCode: 0
+    SignitureLocalCode: 0
     BasePrice: 5000
     SpecialPrice: 0
     PriceIncrement: 8
@@ -96,15 +107,18 @@ MonoBehaviour:
     Accuracy: 36
     CriticalRate: 5
     CriticalDamage: 5
+    GunCount: 4
     FireTime: 2
     ReloadTime: 5
     ShellCnt: 100
     maxDamage: 800
     ResourceName: TestPlayer
-  - Id: 4
-    Rank: 5
-    NameCode: Ship005
-    BackgroundDescriptionCode: ShipDescription005
+  - Id: 5
+    Rank: 4
+    ShipClass: BB
+    NameCode: 0
+    BackgroundDescriptionCode: 0
+    SignitureLocalCode: 0
     BasePrice: 10000
     SpecialPrice: 0
     PriceIncrement: 13
@@ -118,15 +132,18 @@ MonoBehaviour:
     Accuracy: 38
     CriticalRate: 5
     CriticalDamage: 5
+    GunCount: 4
     FireTime: 2
     ReloadTime: 5
     ShellCnt: 100
     maxDamage: 1000
     ResourceName: TestPlayer
-  - Id: 5
-    Rank: 6
-    NameCode: Ship006
-    BackgroundDescriptionCode: ShipDescription006
+  - Id: 6
+    Rank: 5
+    ShipClass: BB
+    NameCode: 0
+    BackgroundDescriptionCode: 0
+    SignitureLocalCode: 0
     BasePrice: 21000
     SpecialPrice: 0
     PriceIncrement: 21
@@ -140,15 +157,18 @@ MonoBehaviour:
     Accuracy: 40
     CriticalRate: 5
     CriticalDamage: 5
+    GunCount: 4
     FireTime: 2
     ReloadTime: 5
     ShellCnt: 100
     maxDamage: 1500
     ResourceName: TestPlayer
-  - Id: 6
-    Rank: 7
-    NameCode: Ship007
-    BackgroundDescriptionCode: ShipDescription007
+  - Id: 7
+    Rank: 6
+    ShipClass: BB
+    NameCode: 0
+    BackgroundDescriptionCode: 0
+    SignitureLocalCode: 0
     BasePrice: 34000
     SpecialPrice: 0
     PriceIncrement: 34
@@ -162,15 +182,18 @@ MonoBehaviour:
     Accuracy: 42
     CriticalRate: 5
     CriticalDamage: 5
+    GunCount: 4
     FireTime: 2
     ReloadTime: 5
     ShellCnt: 100
     maxDamage: 2000
     ResourceName: TestPlayer
-  - Id: 7
-    Rank: 8
-    NameCode: Ship008
-    BackgroundDescriptionCode: ShipDescription008
+  - Id: 8
+    Rank: 6
+    ShipClass: BB
+    NameCode: 0
+    BackgroundDescriptionCode: 0
+    SignitureLocalCode: 0
     BasePrice: 55000
     SpecialPrice: 0
     PriceIncrement: 55
@@ -184,15 +207,18 @@ MonoBehaviour:
     Accuracy: 44
     CriticalRate: 5
     CriticalDamage: 5
+    GunCount: 4
     FireTime: 2
     ReloadTime: 5
     ShellCnt: 100
     maxDamage: 3000
     ResourceName: TestPlayer
-  - Id: 8
-    Rank: 9
-    NameCode: Ship009
-    BackgroundDescriptionCode: ShipDescription009
+  - Id: 9
+    Rank: 6
+    ShipClass: BB
+    NameCode: 0
+    BackgroundDescriptionCode: 0
+    SignitureLocalCode: 0
     BasePrice: 89000
     SpecialPrice: 0
     PriceIncrement: 89
@@ -206,15 +232,18 @@ MonoBehaviour:
     Accuracy: 46
     CriticalRate: 5
     CriticalDamage: 5
+    GunCount: 4
     FireTime: 2
     ReloadTime: 5
     ShellCnt: 100
     maxDamage: 4500
     ResourceName: TestPlayer
-  - Id: 9
-    Rank: 10
-    NameCode: Ship010
-    BackgroundDescriptionCode: ShipDescription010
+  - Id: 10
+    Rank: 6
+    ShipClass: BB
+    NameCode: 0
+    BackgroundDescriptionCode: 0
+    SignitureLocalCode: 0
     BasePrice: 144000
     SpecialPrice: 0
     PriceIncrement: 144
@@ -228,6 +257,7 @@ MonoBehaviour:
     Accuracy: 48
     CriticalRate: 5
     CriticalDamage: 5
+    GunCount: 4
     FireTime: 2
     ReloadTime: 5
     ShellCnt: 100

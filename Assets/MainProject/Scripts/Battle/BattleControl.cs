@@ -82,13 +82,14 @@ namespace Sinabro
         //---------------------------------------------------------------------------------
         public void StartBattle()
         {
-            // test code ---------------------------------------------------------------
+            DataMgr.Instance.myInfo_g.myShipDataList_.Clear();
+
             MyShipData shipData = new MyShipData();
-            shipData.shipId_ = 0;
-            shipData.shipInfo_ = excelDatas_.GetBattleShip(shipData.shipId_);
-            shipData.passiveId_ = 1;
+            shipData.shipId_ = 1;
+            shipData.shipInfo_ = DataMgr.Instance.GetBattleShip(shipData.shipId_);
+            shipData.passiveId_ = 30;
             DataMgr.Instance.myInfo_g.myShipDataList_.Add(shipData);
-            //--------------------------------------------------------------------------
+
 
             bStart_ = true;
             bPlayerShipReady_ = false;

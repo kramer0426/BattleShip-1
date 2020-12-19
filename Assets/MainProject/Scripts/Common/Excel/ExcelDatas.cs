@@ -12,8 +12,10 @@ public class BattleShipEntity
 {
     public int Id;
     public int Rank;
-    public string NameCode;
-    public string BackgroundDescriptionCode;
+    public string ShipClass;
+    public int NameCode;
+    public int BackgroundDescriptionCode;
+    public int SignitureLocalCode;
     public int BasePrice;
     public int SpecialPrice; 
     public int PriceIncrement;
@@ -27,6 +29,7 @@ public class BattleShipEntity
     public int Accuracy;
     public float CriticalRate;
     public float CriticalDamage;
+    public int GunCount;
     public float FireTime;
     public float ReloadTime;
     public int ShellCnt;
@@ -123,30 +126,31 @@ public class ItemEntity
     public float RandomRate;
 }
 
+//
+// LocalizeTextEntity
+//
+[System.Serializable]
+public class LocalizeTextEntity
+{
+    public int Id;
+    public string krString;
+    public string enString;
+    public string jpString;
+    public string cnString;
+    public string twString;
+}
+
 namespace Sinabro
 {
     public class ExcelDatas : MonoBehaviour
     {
-        [SerializeField] BattleShipDataExcel        battleShipExcel_;
         [SerializeField] BattleShipEnemyDataExcel   battleShipEnemyExcel_;
         [SerializeField] ChapterDataExcel           chapterExcel_;
         [SerializeField] ShipSkinDataExcel          shipSkinExcel_;
         [SerializeField] PassiveSkillDataExcel      passiveSkillExcel_;
         [SerializeField] ItemDataExcel              itemExcel_;
         
-        //
-        public BattleShipEntity GetBattleShip(int id)
-        {
-            for (int i = 0; i < battleShipExcel_.Sheet1.Count; ++i)
-            {
-                if (battleShipExcel_.Sheet1[i].Id == id)
-                {
-                    return battleShipExcel_.Sheet1[i];
-                }
-            }
 
-            return null;
-        }
 
         //
         public BattleShipEnemyEntity GetEnemyBattleShip(int id)

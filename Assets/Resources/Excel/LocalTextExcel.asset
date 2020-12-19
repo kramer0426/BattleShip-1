@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc2af8f444a36348b6565241d9e26c8, type: 3}
+  m_Name: LocalTextExcel
+  m_EditorClassIdentifier: 
+  Sheet1:
+  - Id: 1
+    krString: "\uC804\uD568\uD0A4\uC6B0\uAE30"
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 
+  - Id: 101
+    krString: "\uD655\uC778"
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 
+  - Id: 102
+    krString: "\uCDE8\uC18C"
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 
+  - Id: 201
+    krString: "\uD568\uC120"
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 
+  - Id: 202
+    krString: "\uBB34\uC7A5"
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 
+  - Id: 203
+    krString: "\uC9C0\uC6D0"
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 
+  - Id: 204
+    krString: "\uC218\uBCD1"
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 
+  - Id: 205
+    krString: "\uC720\uBB3C"
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 
+  - Id: 206
+    krString: "\uC0C1\uC810"
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 
+  - Id: 1013
+    krString: "\uD14C\uC2A4\uD2B8"
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 
+  - Id: 9001
+    krString: "\uB300\uC804 \uC0C1\uB300\uB97C \uAC80\uC0C9\uC911\uC785\uB2C8\uB2E4..."
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 
+  - Id: 9002
+    krString: "\uC774\uBBF8 \uC0AC\uC6A9\uC911 \uC785\uB2C8\uB2E4"
+    enString: 
+    jpString: 
+    cnString: 
+    twString: 

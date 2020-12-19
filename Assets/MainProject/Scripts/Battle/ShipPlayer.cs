@@ -7,12 +7,12 @@ namespace Sinabro
     public class ShipPlayer : MonoBehaviour
     {
         //
-        public ShipState shipState_;
-        public MyShipData battleShipData_ = null;
-        public ShakeControl shakeControl_;
-        public GameObject bulletObject_;
-        public GameObject[] guns_;
-        public DamageType attackType_ = 0;
+        public ShipState        shipState_;
+        public MyShipData       battleShipData_ = null;
+        public ShakeControl     shakeControl_;
+        public GameObject       bulletObject_;
+        public GameObject[]     guns_;
+        public DamageType       attackType_ = 0;
 
         //
         private Vector3 bulletTargetPos_ = new Vector3(0, 0, 0);
@@ -277,6 +277,22 @@ namespace Sinabro
                     shipState_ = ShipState.Battle;
 
                     currentShellCnt_ = (int)shipAbility_[(int)ShipAbility.ShellCnt];
+
+                    if (BattleControl.Instance.bEnemyShipReady_)
+                    {
+                        if (BattleControl.Instance.enemyShip_.passiveInfo_ != null)
+                        {
+                            if (BattleControl.Instance.enemyShip_.passiveInfo_.Type == (int)PassiveType.EnemyMaxHpDown)
+                            {
+                                if (BattleControl.Instance.enemyShip_.battleShipInfo_.Country != battleShipData_.shipInfo_.Country)
+                                {
+                                    shipAbility_[(int)ShipAbility.Hp] -= shipAbility_[(int)ShipAbility.Hp] * BattleControl.Instance.enemyShip_.passiveInfo_.Value1 * 0.01f;
+                                    maxHp_ = (int)shipAbility_[(int)ShipAbility.Hp];
+                                    BattleControl.Instance.battleUI_.UpdatePlayerHp((int)shipAbility_[(int)ShipAbility.Hp], maxHp_);
+                                }
+                            }
+                        }
+                    }
                 });
             }
             else if (shipState_ == ShipState.Clear)
@@ -352,10 +368,28 @@ namespace Sinabro
 
             // make damage
             int formulaDamage = 0;
+            int accuracy = 0;
+            if (BattleControl.Instance.bEnemyShipReady_)
+                accuracy = (int)BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.Accuracy];
+
+            // player passive
+            if (BattleControl.Instance.bEnemyShipReady_)
+            {
+                if (BattleControl.Instance.enemyShip_.passiveInfo_ != null)
+                {
+                    if (BattleControl.Instance.enemyShip_.passiveInfo_.Type == (int)PassiveType.CompleteAccuracy)
+                    {
+                        if ((int)BattleControl.Instance.enemyShip_.passiveInfo_.Value1 >= Random.Range(0, 100))
+                        {
+                            accuracy = 100000000;   // make 100% accuracy
+                        }
+                    }
+                }
+            }
 
             if (BattleControl.Instance.bEnemyShipReady_)
             {
-                if ((int)BattleControl.Instance.enemyShip_.shipAbility_[(int)ShipAbility.Accuracy] - (int)shipAbility_[(int)ShipAbility.AvoidRate] >= Random.Range(0, 100))
+                if (accuracy - (int)shipAbility_[(int)ShipAbility.AvoidRate] >= Random.Range(0, 100))
                 {
                     // default formula
                     if (type == DamageType.Line)
@@ -453,7 +487,7 @@ namespace Sinabro
             {
                 if (passiveInfo_.Type == (int)PassiveType.AllFleetHpRecoverIfDestroyMe)
                 {
-                    // to do : My fleect Hp recover
+                    // to do : My fleet Hp recover
                 }
                 else if (passiveInfo_.Type == (int)PassiveType.EnemyDestroyIfDestroyMe)
                 {
@@ -624,27 +658,29 @@ namespace Sinabro
         //
         IEnumerator CoroutineCallPlane()
         {
-            if (passiveInfo_ != null)
+            while (true)
             {
-                if (passiveInfo_.Type == (int)PassiveType.PlaneSupport)
+                if (passiveInfo_ != null)
                 {
-                    yield return new WaitForSeconds(passiveInfo_.Value1 / BattleControl.Instance.battleTimeScale_);
+                    if (passiveInfo_.Type == (int)PassiveType.PlaneSupport)
+                    {
+                        yield return new WaitForSeconds(passiveInfo_.Value1 / BattleControl.Instance.battleTimeScale_);
+                    }
+                }
+                else
+                {
+                    yield return null;
+
+                }
+
+                if (passiveInfo_ != null)
+                {
+                    if (passiveInfo_.Type == (int)PassiveType.PlaneSupport)
+                    {
+                        BattleControl.Instance.CallPlayerPlaneSupport(true, (int)shipAbility_[(int)ShipAbility.Ap]);
+                    }
                 }
             }
-            else
-            {
-                yield return null;
-
-            }
-
-            if (passiveInfo_ != null)
-            {
-                if (passiveInfo_.Type == (int)PassiveType.PlaneSupport)
-                {
-                    BattleControl.Instance.CallPlayerPlaneSupport(true, (int)shipAbility_[(int)ShipAbility.Ap]);
-                }
-            }
-            
         }
     }
 }

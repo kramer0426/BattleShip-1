@@ -6,14 +6,14 @@ namespace Sinabro
 {
     public class PlaneTorpedo : PlaneBase
     {
-        private Vector3 pathPoint1 = new Vector3(0, 0, 0);
-        private Vector3 pathPoint2 = new Vector3(0, 0, 0);
-        private Vector3 outPathPoint1 = new Vector3(0, 0, 0);
-        private Vector3 outPathPoint2 = new Vector3(0, 0, 0);
-        private Vector3 startPos = new Vector3(0, 0, 0);
+        private Vector3 pathPoint1 = new Vector3(0, 2.5f, 0);
+        private Vector3 pathPoint2 = new Vector3(0, 2.5f, 0);
+        private Vector3 outPathPoint1 = new Vector3(0, 2.5f, 0);
+        private Vector3 outPathPoint2 = new Vector3(0, 2.5f, 0);
+        private Vector3 startPos = new Vector3(0, 2.5f, 0);
         private Vector3 targetPos = new Vector3(0, 2.5f, 0);
-        private Vector3 torpedoStartPos = new Vector3(0, 0, 0);
-        private Vector3 torpedoTargetPos = new Vector3(0, 0, 0);
+        private Vector3 torpedoStartPos = new Vector3(0, 2.5f, 0);
+        private Vector3 torpedoTargetPos = new Vector3(0, 2.5f, 0);
 
         //
         public GameObject bulletObject_;
@@ -40,7 +40,7 @@ namespace Sinabro
                 pathPoint1 = pathPoint2 = startPos;
                 pathPoint1.x += (targetPos.x - startPos.x) * 0.33f;
                 pathPoint2.x += (targetPos.x - startPos.x) * 0.66f;
-                pathPoint2.y = 0.1f;
+                pathPoint2.y += 0.1f;
 
             }
             else
@@ -50,7 +50,7 @@ namespace Sinabro
                 pathPoint1 = pathPoint2 = startPos;
                 pathPoint1.x -= (startPos.x - targetPos.x) * 0.33f;
                 pathPoint2.x -= (startPos.x - targetPos.x) * 0.66f;
-                pathPoint2.y = 0.1f;
+                pathPoint2.y += 0.1f;
             }
 
             LTSpline ltSpline = new LTSpline(new Vector3[] { startPos, startPos, pathPoint1, pathPoint2, targetPos, targetPos });
