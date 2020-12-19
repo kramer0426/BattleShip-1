@@ -42,3 +42,8 @@ sysinfo.txt
 Library
 Logs
 obj
+BattleShip.sln
+.vs
+.vsconfig
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj
