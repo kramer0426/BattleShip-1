@@ -37,10 +37,50 @@ namespace Sinabro
         void Start()
         {
             //
+            int firstPlay = PlayerPrefs.GetInt("FirstPlay", 0);
+            if (firstPlay == 0)
+            {
+                DataMgr.Instance.myInfo_g.myShipDataList_.Clear();
+                MyShipData shipData = new MyShipData();
+                shipData.shipId_ = 1;
+                shipData.fleetIndex_ = 0;
+                shipData.upgradeLevel_ = 0;
+                shipData.shipInfo_ = DataMgr.Instance.GetBattleShip(shipData.shipId_);
+                shipData.passiveId_ = 30;
+                DataMgr.Instance.myInfo_g.myShipDataList_.Add(shipData);
+
+                PlayerPrefs.SetInt("FirstPlay", 1);
+            }
+            else
+            {
+                DataMgr.Instance.LoadData();
+            }
+
+            //
             currentMenuState_ = MenuState.Ship;
 
             //
             SetLobbyUI();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.F3))
+            {
+                DataMgr.Instance.myInfo_g.ResetMyData();
+
+                currentMenuState_ = MenuState.Ship;
+
+                SetLobbyUI();
+            }
+            else if (Input.GetKeyUp(KeyCode.F5))
+            {
+                currentMenuState_ = MenuState.Ship;
+
+                DataMgr.Instance.myInfo_g.AddMyGold(100000);
+
+                SetLobbyUI();
+            }
         }
 
         //

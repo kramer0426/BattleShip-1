@@ -19,9 +19,8 @@ namespace Sinabro
         public int myGold_;
         public int myCash_;
         public int currentChapter_;
-
-        //
         public List<MyShipData> myShipDataList_ = new List<MyShipData>();
+
 
         //
         public DateTime saveDate;
@@ -34,8 +33,6 @@ namespace Sinabro
             myGold_ = DataMgr.DEFALUT_GOLD;
             myCash_ = 0;
             currentChapter_ = 0;
-
-
         }
 
         //
@@ -45,6 +42,16 @@ namespace Sinabro
             myCash_ = 0;
 
             currentChapter_ = 0;
+
+            //
+            DataMgr.Instance.myInfo_g.myShipDataList_.Clear();
+            MyShipData shipData = new MyShipData();
+            shipData.shipId_ = 1;
+            shipData.fleetIndex_ = 0;
+            shipData.upgradeLevel_ = 0;
+            shipData.shipInfo_ = DataMgr.Instance.GetBattleShip(shipData.shipId_);
+            shipData.passiveId_ = 30;
+            DataMgr.Instance.myInfo_g.myShipDataList_.Add(shipData);
 
             //
             DataMgr.Instance.SaveData();
@@ -73,8 +80,7 @@ namespace Sinabro
         //
         public int shipId_;
         public BattleShipEntity shipInfo_;
-        public bool bOpen_;
-        public bool bJoinFleet_;
+        public int fleetIndex_;
 
         //
         public int[] equipItemIds_ = new int[DataMgr.MAX_ITEM_SLOT];
@@ -89,8 +95,7 @@ namespace Sinabro
         public MyShipData()
         {
             shipId_ = 0;
-            bOpen_ = false;
-            bJoinFleet_ = false;
+            fleetIndex_ = -1;
             upgradeLevel_ = 0;
             passiveId_ = 0;
             for (int i = 0; i < DataMgr.MAX_ITEM_SLOT; ++i)
@@ -264,7 +269,7 @@ namespace Sinabro
         public const int MAX_PASSIVE_DESTROY_ENEMY = 10;
 
         //
-        public const int DEFALUT_GOLD = 1000;
+        public const int DEFALUT_GOLD = 0;
 
         //
         public const float StartBattlePlayerMoveTime = 1.0f;
